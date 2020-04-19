@@ -11,7 +11,8 @@ import UIKit
 class MainTableViewDelegate: NSObject, UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     // four paddings that are of width = 2x system spacing (2x8)
-    (tableView.frame.height - 16 * 4) / 3
+    let numberOfSections = CGFloat(tableView.numberOfSections)
+    return (tableView.frame.height - 16 * (numberOfSections + 1)) / numberOfSections
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

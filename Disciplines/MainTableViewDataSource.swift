@@ -9,12 +9,13 @@
 import UIKit
 
 class MainTableViewDataSource: NSObject, UITableViewDataSource {
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 1
   }
   
   func numberOfSections(in tableView: UITableView) -> Int {
-    3
+    1
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
