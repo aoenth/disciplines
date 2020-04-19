@@ -86,13 +86,15 @@ class ViewController: UIViewController {
     }
     
     alertController.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-      if let text = alertController.textFields?.first?.text {
+      if let text = alertController.textFields?.first?.text, !text.isEmpty {
         DataManager.shared.create(text) {
           self.disciplinesTexts.append(text)
           self.createAndAddButton(text)
         }
       }
     })
+    
+    alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
     
     present(alertController, animated: true, completion: nil)
   }
