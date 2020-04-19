@@ -28,6 +28,7 @@ class MainViewController: UIViewController {
     super.viewDidLoad()
     applyTableViewStyle()
     setupLayout()
+    loadData()
   }
   
   func applyTableViewStyle() {
@@ -41,6 +42,9 @@ class MainViewController: UIViewController {
     tableView.leadingAnchor.constraint(equalToSystemSpacingAfter: salg.leadingAnchor, multiplier: 2).activate()
     salg.trailingAnchor.constraint(equalToSystemSpacingAfter: tableView.trailingAnchor, multiplier: 2).activate()
     salg.bottomAnchor.constraint(equalToSystemSpacingBelow: tableView.bottomAnchor, multiplier: 2).activate()
+  }
+  
+  func loadData() {
     
   }
 }

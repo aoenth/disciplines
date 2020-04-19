@@ -11,16 +11,17 @@ import UIKit
 class MainTableViewDataSource: NSObject, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
+    1
   }
   
   func numberOfSections(in tableView: UITableView) -> Int {
-    1
+    return DataManager.shared.numberOfItems()
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: DisciplineCell.cellId, for: indexPath) as! DisciplineCell
-    cell.configureCell("\(indexPath.section)")
+    let discipline = DataManager.shared.discipline(at: indexPath)
+    cell.configureCell("\(discipline.shortText)")
     return cell
   }
 }

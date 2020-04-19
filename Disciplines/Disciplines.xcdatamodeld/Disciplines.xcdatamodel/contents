@@ -7,10 +7,11 @@
     <entity name="Discipline" representedClassName="Discipline" syncable="YES">
         <attribute name="dateIntroduced" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="isArchived" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="shortText" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Discipline" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="Discipline" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="Completion" positionX="-54" positionY="18" width="128" height="73"/>
     </elements>
 </model>
