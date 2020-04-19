@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
     let tv = UITableView()
     tv.translatesAutoresizingMaskIntoConstraints = false
     tv.register(DisciplineCell.self, forCellReuseIdentifier: DisciplineCell.cellId)
+    tv.allowsSelection = false
     tv.dataSource = dataSource
     tv.delegate = delegate
     tv.backgroundColor = .white
