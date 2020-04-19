@@ -15,11 +15,7 @@ class View: UIView {
     layoutViews()
   }
   
-  let disciplinesText = ["Sleep at 9:30PM",
-                         "Wake up at 4:30AM",
-                         "Learn from any online resource whenever bored",
-                         "Max 1 Overwatch game a day",
-                         "Max 1 hour of music listening a day"]
+  var disciplinesText = [String]()
   
   private lazy var disciplines: [UIButton] = {
     var btns = [UIButton]()

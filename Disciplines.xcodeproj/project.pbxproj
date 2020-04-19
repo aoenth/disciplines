@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A023D3B244C6A9400D167BF /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A023D3A244C6A9400D167BF /* UIKit+Extensions.swift */; };
 		0A023D3D244C6DE300D167BF /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A023D3C244C6DE300D167BF /* View.swift */; };
+		0A023D44244C7A3400D167BF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A023D43244C7A3400D167BF /* DataManager.swift */; };
 		0A8422721F74577400C93F80 /* Applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8422711F74577400C93F80 /* Applause.mp3 */; };
 		0AAF7B071F68897F00407AC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF7B061F68897E00407AC5 /* AppDelegate.swift */; };
 		0AAF7B091F68897F00407AC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF7B081F68897F00407AC5 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		0A023D3A244C6A9400D167BF /* UIKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
 		0A023D3C244C6DE300D167BF /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		0A023D43244C7A3400D167BF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		0A8422711F74577400C93F80 /* Applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Applause.mp3; sourceTree = "<group>"; };
 		0AAF7B031F68897E00407AC5 /* Disciplines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Disciplines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AAF7B061F68897E00407AC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -39,9 +41,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A023D40244C79A100D167BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0A023D3A244C6A9400D167BF /* UIKit+Extensions.swift */,
+				0A023D43244C7A3400D167BF /* DataManager.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0A023D41244C79B600D167BF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0AAF7B061F68897E00407AC5 /* AppDelegate.swift */,
+				0A8422701F74576600C93F80 /* Resources */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		0A023D42244C79BA00D167BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0AAF7B081F68897F00407AC5 /* ViewController.swift */,
+				0A023D3C244C6DE300D167BF /* View.swift */,
+				0AAF7B0F1F68897F00407AC5 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		0A8422701F74576600C93F80 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0AAF7B0D1F68897F00407AC5 /* Assets.xcassets */,
 				0A8422711F74577400C93F80 /* Applause.mp3 */,
 			);
 			name = Resources;
@@ -66,14 +97,10 @@
 		0AAF7B051F68897E00407AC5 /* Disciplines */ = {
 			isa = PBXGroup;
 			children = (
-				0A8422701F74576600C93F80 /* Resources */,
-				0AAF7B061F68897E00407AC5 /* AppDelegate.swift */,
-				0AAF7B081F68897F00407AC5 /* ViewController.swift */,
-				0A023D3C244C6DE300D167BF /* View.swift */,
-				0AAF7B0D1F68897F00407AC5 /* Assets.xcassets */,
-				0AAF7B0F1F68897F00407AC5 /* LaunchScreen.storyboard */,
+				0A023D40244C79A100D167BF /* Model */,
+				0A023D42244C79BA00D167BF /* View */,
+				0A023D41244C79B600D167BF /* App */,
 				0AAF7B121F68897F00407AC5 /* Info.plist */,
-				0A023D3A244C6A9400D167BF /* UIKit+Extensions.swift */,
 			);
 			path = Disciplines;
 			sourceTree = "<group>";
@@ -152,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A023D3D244C6DE300D167BF /* View.swift in Sources */,
+				0A023D44244C7A3400D167BF /* DataManager.swift in Sources */,
 				0AAF7B091F68897F00407AC5 /* ViewController.swift in Sources */,
 				0AAF7B071F68897F00407AC5 /* AppDelegate.swift in Sources */,
 				0A023D3B244C6A9400D167BF /* UIKit+Extensions.swift in Sources */,

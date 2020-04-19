@@ -14,6 +14,7 @@ class ViewController: UIViewController {
   let disciplineView = View()
   
   override func loadView() {
+    disciplineView.disciplinesText = DataManager.shared.disciplines
     self.view = disciplineView
     disciplineView.addTarget(self, selector: #selector(btnTapped))
   }
