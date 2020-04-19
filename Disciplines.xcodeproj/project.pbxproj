@@ -14,6 +14,7 @@
 		0A11A134244D012200C298D0 /* DisciplineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11A133244D012200C298D0 /* DisciplineCell.swift */; };
 		0A11A136244D020900C298D0 /* MainTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11A135244D020900C298D0 /* MainTableViewDataSource.swift */; };
 		0A11A138244D04FB00C298D0 /* MainTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11A137244D04FB00C298D0 /* MainTableViewDelegate.swift */; };
+		0A11A13B244D0E1800C298D0 /* Disciplines.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A11A139244D0E1800C298D0 /* Disciplines.xcdatamodeld */; };
 		0A8422721F74577400C93F80 /* Applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8422711F74577400C93F80 /* Applause.mp3 */; };
 		0AAF7B071F68897F00407AC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF7B061F68897E00407AC5 /* AppDelegate.swift */; };
 		0AAF7B091F68897F00407AC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF7B081F68897F00407AC5 /* ViewController.swift */; };
@@ -29,6 +30,7 @@
 		0A11A133244D012200C298D0 /* DisciplineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineCell.swift; sourceTree = "<group>"; };
 		0A11A135244D020900C298D0 /* MainTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewDataSource.swift; sourceTree = "<group>"; };
 		0A11A137244D04FB00C298D0 /* MainTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewDelegate.swift; sourceTree = "<group>"; };
+		0A11A13A244D0E1800C298D0 /* Disciplines.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Disciplines.xcdatamodel; sourceTree = "<group>"; };
 		0A8422711F74577400C93F80 /* Applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Applause.mp3; sourceTree = "<group>"; };
 		0AAF7B031F68897E00407AC5 /* Disciplines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Disciplines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AAF7B061F68897E00407AC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 			children = (
 				0A023D3A244C6A9400D167BF /* UIKit+Extensions.swift */,
 				0A023D43244C7A3400D167BF /* DataManager.swift */,
+				0A11A139244D0E1800C298D0 /* Disciplines.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				0A023D46244C8A1800D167BF /* DisciplineButton.swift in Sources */,
 				0A023D44244C7A3400D167BF /* DataManager.swift in Sources */,
 				0A11A138244D04FB00C298D0 /* MainTableViewDelegate.swift in Sources */,
+				0A11A13B244D0E1800C298D0 /* Disciplines.xcdatamodeld in Sources */,
 				0AAF7B091F68897F00407AC5 /* ViewController.swift in Sources */,
 				0A11A136244D020900C298D0 /* MainTableViewDataSource.swift in Sources */,
 				0A11A132244D00E800C298D0 /* MainViewController.swift in Sources */,
@@ -377,6 +381,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0A11A139244D0E1800C298D0 /* Disciplines.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0A11A13A244D0E1800C298D0 /* Disciplines.xcdatamodel */,
+			);
+			currentVersion = 0A11A13A244D0E1800C298D0 /* Disciplines.xcdatamodel */;
+			path = Disciplines.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0AAF7AFB1F68897E00407AC5 /* Project object */;
 }
