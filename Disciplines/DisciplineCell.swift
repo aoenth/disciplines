@@ -45,8 +45,15 @@ class DisciplineCell: UITableViewCell {
   }
   
   func setupLayout() {
-    
+    addSubview(disciplineDescription)
+    disciplineDescription.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 2).activate()
+    leadingAnchor.constraint(equalToSystemSpacingAfter: disciplineDescription.leadingAnchor, multiplier: 2).activate()
+    trailingAnchor.constraint(equalToSystemSpacingAfter: disciplineDescription.trailingAnchor, multiplier: 2).activate()
+    bottomAnchor.constraint(equalToSystemSpacingBelow: disciplineDescription.bottomAnchor, multiplier: 2).activate()
   }
   
+  func configureCell(_ text: String) {
+    disciplineDescription.text = text
+  }
   
 }

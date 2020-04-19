@@ -18,14 +18,19 @@ class MainViewController: UIViewController {
     tv.register(DisciplineCell.self, forCellReuseIdentifier: DisciplineCell.cellId)
     tv.dataSource = dataSource
     tv.delegate = delegate
+    tv.backgroundColor = .white
     tv.separatorStyle = .none
-    
     return tv
   }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    applyTableViewStyle()
     setupLayout()
+  }
+  
+  func applyTableViewStyle() {
+    view.backgroundColor = .white
   }
   
   func setupLayout() {
