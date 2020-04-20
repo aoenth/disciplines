@@ -29,6 +29,7 @@ class DataManager {
     }
     
     loadSavedData()
+    
   }
   
   private func loadSavedData() {

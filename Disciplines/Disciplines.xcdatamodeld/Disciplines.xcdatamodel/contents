@@ -12,7 +12,7 @@
         <relationship name="completion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Completion" inverseName="discipline" inverseEntity="Completion"/>
     </entity>
     <elements>
-        <element name="Discipline" positionX="-63" positionY="-18" width="128" height="118"/>
         <element name="Completion" positionX="-54" positionY="18" width="128" height="73"/>
+        <element name="Discipline" positionX="-63" positionY="-18" width="128" height="118"/>
     </elements>
 </model>

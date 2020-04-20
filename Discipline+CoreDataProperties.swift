@@ -17,9 +17,10 @@ extension Discipline {
         return NSFetchRequest<Discipline>(entityName: "Discipline")
     }
 
-    @NSManaged public var shortText: String
     @NSManaged public var dateIntroduced: Date
     @NSManaged public var isArchived: Bool
     @NSManaged public var order: Int64
+    @NSManaged public var shortText: String
+    @NSManaged public var completion: Completion
 
 }
