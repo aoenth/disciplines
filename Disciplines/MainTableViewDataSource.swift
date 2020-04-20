@@ -20,7 +20,7 @@ class MainTableViewDataSource: NSObject, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: DisciplineCell.cellId, for: indexPath) as! DisciplineCell
-    let discipline = DataManager.shared.discipline(at: indexPath)
+    let discipline = DataManager.shared.discipline(at: indexPath.section)
     cell.configureCell("\(discipline.shortText)")
     return cell
   }

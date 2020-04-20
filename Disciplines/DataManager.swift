@@ -29,7 +29,9 @@ class DataManager {
     }
     
     loadSavedData()
-    
+    removeSavedData()
+    insertDummyData()
+    loadSavedData()
   }
   
   private func loadSavedData() {
@@ -46,6 +48,23 @@ class DataManager {
       try fetchedResultsController.performFetch()
     } catch {
       print("Fetch failed")
+    }
+  }
+  
+  func removeSavedData() {
+    getAllDisciplines().forEach {
+      container.viewContext.delete($0)
+    }
+    do {
+      try container.viewContext.save()
+    } catch {
+      fatalError("Could not save context")
+    }
+  }
+  
+  func insertDummyData() {
+    initial.forEach { (text) in
+      create(text, completion: nil)
     }
   }
   
@@ -73,8 +92,9 @@ class DataManager {
     fetchedResultsController.fetchedObjects!
   }
   
-  func discipline(at indexPath: IndexPath) -> Discipline {
-    fetchedResultsController.object(at: indexPath)
+  func discipline(at row: Int) -> Discipline {
+    let result = fetchedResultsController.object(at: IndexPath(row: row, section: 0))
+    return result
   }
   
   func numberOfItems() -> Int {
