@@ -18,9 +18,10 @@ class DisciplineCell: UITableViewCell {
   private lazy var disciplineDescription: UILabel = {
     let lbl = UILabel()
     lbl.translatesAutoresizingMaskIntoConstraints = false
-    lbl.font = UIFont.systemFont(ofSize: 48)
+    lbl.font = UIFont.systemFont(ofSize: 36)
     lbl.textColor = cellFontColor
     lbl.textAlignment = .center
+    lbl.adjustsFontSizeToFitWidth = true
     lbl.numberOfLines = 0
     return lbl
   }()
