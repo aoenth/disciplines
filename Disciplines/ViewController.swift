@@ -16,6 +16,7 @@ class ViewController: UIViewController {
   var activatedButton: UIButton?
   var widthConstraint: NSLayoutConstraint?
   var doneButtonConstraints = [NSLayoutConstraint]()
+  var dragging = false
   
   private lazy var stackView: UIStackView = {
     let stackView = UIStackView()
@@ -117,10 +118,12 @@ class ViewController: UIViewController {
           self.widthConstraint?.constant = 80 - 8
         }
       }
+      dragging = false
       return
     }
     
     if shouldRestoreLeft || shouldRestoreRight {
+      dragging = false
       gesture.state = .ended
       restoreToIdentityTransformation(button)
     } else if leftSwiped || rightSwiped {
@@ -146,9 +149,10 @@ class ViewController: UIViewController {
   }
   
   func updateButton(_ tx: CGFloat) {
-    if let activeButton = activatedButton {
+    if let activeButton = activatedButton, dragging == false {
       removeAllConstraints()
       createConstraints(toButton: activeButton)
+      dragging = true
     }
     widthConstraint?.constant = abs(tx) - 8
     view.setNeedsLayout()
