@@ -13,6 +13,7 @@ import AVFoundation
 class ViewController: UIViewController {
   
   var disciplines = [Discipline]()
+  var activatedButton: UIButton?
   
   private lazy var stackView: UIStackView = {
     let stackView = UIStackView()
@@ -56,8 +57,13 @@ class ViewController: UIViewController {
   
   private func createAndAddButton(_ text: String) {
     let button = DisciplineButton(disciplineDescription: text)
-    button.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
+    addSwipeForDone(button)
     stackView.addArrangedSubview(button)
+  }
+  
+  func addSwipeForDone(_ button: UIButton) {
+    let pan = UIPanGestureRecognizer(target: self, action: #selector(btnSwipeLeft))
+    button.addGestureRecognizer(pan)
   }
   
   private func layoutViews() {
@@ -69,9 +75,74 @@ class ViewController: UIViewController {
     salg.bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 1).activate()
   }
   
-  @objc private func btnTapped(_ button: DisciplineButton) {
-    button.isCompleted = true
+  @objc private func btnSwipeLeft(_ gesture: UIPanGestureRecognizer) {
+    guard let button = gesture.view as? DisciplineButton else {
+      return
+    }
+    
+    let tx =  button.transform.tx
+    let translationX: CGFloat
+    if gesture.state == .began {
+      if let btn = activatedButton, button != btn {
+        restoreToIdentityTransformation(btn)
+        return
+      } else {
+        translationX = gesture.translation(in: view).x + tx
+      }
+    } else {
+      translationX = gesture.translation(in: view).x
+    }
+    
+    if gesture.state == .ended {
+      let tx = button.transform.tx
+      if let btn = activatedButton {
+        UIView.animate(withDuration: 0.1) {
+          btn.transform = CGAffineTransform(translationX: tx > 0 ? 80 : -80, y: 0)
+        }
+      }
+      return
+    }
+    
+    
+    let leftSwiped = tx <= -80
+    let rightSwiped = tx >= 80
+    let swipingLeft = gesture.velocity(in: view).x < 0
+    let swipingRight = !swipingLeft
+    let shouldRestoreLeft = tx < 80 && tx > 0 && swipingLeft
+    let shouldRestoreRight = tx > -80 && tx < 0 && swipingRight
+    
+    if shouldRestoreLeft || shouldRestoreRight {
+      gesture.state = .ended
+      restoreToIdentityTransformation(button)
+    } else if leftSwiped || rightSwiped {
+      let translationValue = min(120 / abs(translationX), 1)
+      let directionMultiplier: CGFloat = swipingLeft ? -1 : 1
+      let dx = directionMultiplier * translationValue
+      print(directionMultiplier, translationValue, dx)
+      button.transform = button.transform.translatedBy(x: dx, y: 0)
+      activatedButton = button
+    } else {
+      button.transform = CGAffineTransform(translationX: translationX, y: 0)
+      activatedButton = button
+    }
   }
+  
+  private func restoreToIdentityTransformation(_ button: UIButton) {
+    UIView.animate(withDuration: 0.1) {
+      button.transform = .identity
+    }
+    activatedButton = nil
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    if let btn = activatedButton {
+      UIView.animate(withDuration: 0.5) {
+        btn.transform = .identity
+      }
+      return
+    }
+  }
+  
   
   @objc private func clear() {
     stackView.arrangedSubviews.forEach {
