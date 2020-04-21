@@ -14,6 +14,8 @@ class ViewController: UIViewController {
   
   var disciplines = [Discipline]()
   var activatedButton: UIButton?
+  var widthConstraint: NSLayoutConstraint?
+  var doneButtonConstraints = [NSLayoutConstraint]()
   
   private lazy var stackView: UIStackView = {
     let stackView = UIStackView()
@@ -22,6 +24,12 @@ class ViewController: UIViewController {
     stackView.distribution = .fillEqually
     stackView.spacing = 10
     return stackView
+  }()
+  
+  private lazy var doneButton: DoneButton = {
+    let btn = DoneButton()
+    btn.translatesAutoresizingMaskIntoConstraints = false
+    return btn
   }()
   
   override func viewDidLoad() {
@@ -68,6 +76,7 @@ class ViewController: UIViewController {
   
   private func layoutViews() {
     view.addSubview(stackView)
+    view.addSubview(doneButton)
     let salg = view.safeAreaLayoutGuide
     stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: salg.leadingAnchor, multiplier: 1).activate()
     salg.trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1).activate()
@@ -105,6 +114,7 @@ class ViewController: UIViewController {
       if let btn = activatedButton {
         UIView.animate(withDuration: 0.1) {
           btn.transform = CGAffineTransform(translationX: tx > 0 ? 80 : -80, y: 0)
+          self.widthConstraint?.constant = 80 - 8
         }
       }
       return
@@ -117,20 +127,49 @@ class ViewController: UIViewController {
       let translationValue = min(120 / abs(translationX), 1)
       let directionMultiplier: CGFloat = swipingLeft ? -1 : 1
       let dx = directionMultiplier * translationValue
-      print(directionMultiplier, translationValue, dx)
       button.transform = button.transform.translatedBy(x: dx, y: 0)
       activatedButton = button
+      updateButton(tx)
     } else {
       button.transform = CGAffineTransform(translationX: translationX, y: 0)
       activatedButton = button
+      updateButton(tx)
     }
   }
   
   private func restoreToIdentityTransformation(_ button: UIButton) {
     UIView.animate(withDuration: 0.1) {
       button.transform = .identity
+      self.widthConstraint?.constant = 0
     }
     activatedButton = nil
+  }
+  
+  func updateButton(_ tx: CGFloat) {
+    if let activeButton = activatedButton {
+      removeAllConstraints()
+      createConstraints(toButton: activeButton)
+    }
+    widthConstraint?.constant = abs(tx) - 8
+    view.setNeedsLayout()
+  }
+  
+  func createConstraints(toButton activeButton: UIButton) {
+    let top = doneButton.topAnchor.constraint(equalTo: activeButton.topAnchor)
+    let leading = stackView.trailingAnchor.constraint(equalTo: doneButton.trailingAnchor)
+    let width = doneButton.widthAnchor.constraint(equalToConstant: 0)
+    let bottom = activeButton.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor)
+    doneButtonConstraints = [top, leading, width, bottom]
+    doneButtonConstraints.forEach {
+      $0.activate()
+    }
+    widthConstraint = width
+  }
+  
+  func removeAllConstraints() {
+    doneButtonConstraints.forEach {
+      $0.isActive = false
+    }
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
