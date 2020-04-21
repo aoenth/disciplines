@@ -77,8 +77,8 @@
 		0A023D42244C79BA00D167BF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0A6BE122244E8F5A0036C729 /* ViewController.swift */,
 				0AAF7B0F1F68897F00407AC5 /* LaunchScreen.storyboard */,
+				0A6BE122244E8F5A0036C729 /* ViewController.swift */,
 				0A023D45244C8A1800D167BF /* DisciplineButton.swift */,
 			);
 			name = View;

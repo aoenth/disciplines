@@ -11,6 +11,7 @@ import UIKit
 class DisciplineButton: UIButton {
   private let cellBackgroundColor = UIColor(red: 0xD8/0xFF, green: 0xD8/0xFF, blue: 0xD8/0xFF, alpha: 1)
   private let cellBorderColor = UIColor(red: 0x97/0xFF, green: 0x97/0xFF, blue: 0x97/0xFF, alpha: 1)
+  private let cellBorderCompleteColor = UIColor(red: 0xBB/0xFF, green: 0xBB/0xFF, blue: 0xBB/0xFF, alpha: 1)
   private let cellFontColor = UIColor(red: 0x95/0xFF, green: 0x95/0xFF, blue: 0x95/0xFF, alpha: 1)
   
   
@@ -39,12 +40,13 @@ class DisciplineButton: UIButton {
   }
   
   private func updateButtonColors() {
-    layer.borderColor = cellBorderColor.cgColor
     layer.borderWidth = 1
     if isCompleted {
+      layer.borderColor = cellBorderCompleteColor.cgColor
       setTitleColor(cellFontColor.withAlphaComponent(0.5), for: .normal)
       backgroundColor = .clear
     } else {
+      layer.borderColor = cellBorderColor.cgColor
       setTitleColor(cellFontColor, for: .normal)
       backgroundColor = cellBackgroundColor
     }
