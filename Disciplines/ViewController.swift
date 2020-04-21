@@ -29,6 +29,7 @@ class ViewController: UIViewController {
   
   private lazy var doneButton: DoneButton = {
     let btn = DoneButton()
+    btn.isHidden = true
     btn.translatesAutoresizingMaskIntoConstraints = false
     return btn
   }()
@@ -126,41 +127,47 @@ class ViewController: UIViewController {
       dragging = false
       gesture.state = .ended
       restoreToIdentityTransformation(button)
+      return
     } else if leftSwiped || rightSwiped {
       let translationValue = min(120 / abs(translationX), 1)
       let directionMultiplier: CGFloat = swipingLeft ? -1 : 1
       let dx = directionMultiplier * translationValue
       button.transform = button.transform.translatedBy(x: dx, y: 0)
-      activatedButton = button
-      updateButton(tx)
     } else {
       button.transform = CGAffineTransform(translationX: translationX, y: 0)
-      activatedButton = button
-      updateButton(tx)
     }
+    
+    activatedButton = button
+    
+    updateButton(tx, left: tx == 0 ? swipingLeft : leftSwiped)
   }
   
   private func restoreToIdentityTransformation(_ button: UIButton) {
     UIView.animate(withDuration: 0.1) {
-      button.transform = .identity
       self.widthConstraint?.constant = 0
+      button.transform = .identity
     }
     activatedButton = nil
   }
   
-  func updateButton(_ tx: CGFloat) {
+  func updateButton(_ tx: CGFloat, left: Bool) {
     if let activeButton = activatedButton, dragging == false {
+      doneButton.isHidden = false
       removeAllConstraints()
-      createConstraints(toButton: activeButton)
+      createConstraints(toButton: activeButton, left: left)
       dragging = true
     }
     widthConstraint?.constant = abs(tx) - 8
-    view.setNeedsLayout()
   }
   
-  func createConstraints(toButton activeButton: UIButton) {
+  func createConstraints(toButton activeButton: UIButton, left: Bool) {
     let top = doneButton.topAnchor.constraint(equalTo: activeButton.topAnchor)
-    let leading = stackView.trailingAnchor.constraint(equalTo: doneButton.trailingAnchor)
+    let leading: NSLayoutConstraint
+    if left {
+      leading = stackView.trailingAnchor.constraint(equalTo: doneButton.trailingAnchor)
+    } else {
+      leading = stackView.leadingAnchor.constraint(equalTo: doneButton.leadingAnchor)
+    }
     let width = doneButton.widthAnchor.constraint(equalToConstant: 0)
     let bottom = activeButton.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor)
     doneButtonConstraints = [top, leading, width, bottom]
@@ -169,6 +176,7 @@ class ViewController: UIViewController {
     }
     widthConstraint = width
   }
+  
   
   func removeAllConstraints() {
     doneButtonConstraints.forEach {
