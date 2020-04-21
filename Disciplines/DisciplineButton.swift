@@ -31,7 +31,7 @@ class DisciplineButton: UIButton {
   override func layoutSubviews() {
     super.layoutSubviews()
     setTitle(disciplineDescription, for: .normal)
-    titleLabel?.numberOfLines = 0
+    titleLabel?.numberOfLines = 2
     titleLabel?.font = UIFont.systemFont(ofSize: 36)
     titleLabel?.adjustsFontSizeToFitWidth = true
     titleLabel?.textAlignment = .center
