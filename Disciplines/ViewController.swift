@@ -157,7 +157,7 @@ class ViewController: UIViewController {
       createConstraints(toButton: activeButton, left: left)
       dragging = true
     }
-    widthConstraint?.constant = abs(tx) - 8
+    widthConstraint?.constant = max(abs(tx) - 8, 0)
   }
   
   func createConstraints(toButton activeButton: UIButton, left: Bool) {
@@ -186,10 +186,7 @@ class ViewController: UIViewController {
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     if let btn = activatedButton {
-      UIView.animate(withDuration: 0.5) {
-        btn.transform = .identity
-      }
-      return
+      restoreToIdentityTransformation(btn)
     }
   }
   
