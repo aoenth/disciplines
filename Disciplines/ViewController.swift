@@ -138,14 +138,14 @@ class ViewController: UIViewController {
     }
     
     activatedButton = button
-    
     updateButton(tx, left: tx == 0 ? swipingLeft : leftSwiped)
   }
   
   private func restoreToIdentityTransformation(_ button: UIButton) {
-    UIView.animate(withDuration: 0.1) {
-      self.widthConstraint?.constant = 0
+    widthConstraint?.constant = 0
+    UIView.animate(withDuration: 0.2) {
       button.transform = .identity
+      self.view.layoutIfNeeded()
     }
     activatedButton = nil
   }

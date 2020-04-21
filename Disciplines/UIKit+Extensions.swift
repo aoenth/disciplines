@@ -16,10 +16,9 @@ extension NSLayoutConstraint {
 
 extension UIColor {
   convenience init(hex: Int) {
-    let red = CGFloat(hex & 0xFF0000 >> 4)/0xFF
-    let green = CGFloat(hex & 0x00FF00 >> 2)/0xFF
+    let red = CGFloat((hex & 0xFF0000) >> (0x10 / 4 * 4))/0xFF
+    let green = CGFloat((hex & 0x00FF00) >> (0x10 / 4 * 2))/0xFF
     let blue = CGFloat(hex & 0x0000FF)/0xFF
-    print(red, green, blue)
     self.init(red: red, green: green, blue: blue, alpha: 1)
   }
 }

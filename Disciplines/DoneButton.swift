@@ -18,5 +18,6 @@ class DoneButton: UIButton {
     setTitleColor(.white, for: .normal)
     layer.cornerRadius = 8
     titleLabel?.font = .systemFont(ofSize: 18)
+    titleLabel?.adjustsFontSizeToFitWidth = true
   }
 }
