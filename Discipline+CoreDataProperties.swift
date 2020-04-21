@@ -21,6 +21,6 @@ extension Discipline {
     @NSManaged public var isArchived: Bool
     @NSManaged public var order: Int64
     @NSManaged public var shortText: String
-    @NSManaged public var completion: Completion
+    @NSManaged public var completion: Completion?
 
 }

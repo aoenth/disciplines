@@ -78,6 +78,14 @@ class DataManager {
     completion?(discipline)
   }
   
+  func complete(discipline: Discipline, onComplete: (() -> Void)? = nil) {
+    let completion = Completion(context: container.viewContext)
+    completion.completionDate = Date()
+    completion.discipline = discipline
+    saveContext()
+    onComplete?()
+  }
+  
   private func saveContext() {
     if container.viewContext.hasChanges {
       do {

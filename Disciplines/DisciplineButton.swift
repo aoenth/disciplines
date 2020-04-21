@@ -15,10 +15,8 @@ class DisciplineButton: UIButton {
   private let cellFontColor = UIColor(red: 0x95/0xFF, green: 0x95/0xFF, blue: 0x95/0xFF, alpha: 1)
   
   
-  var isCompleted: Bool = false {
-    didSet {
-      updateButtonColors()
-    }
+  var isCompleted: Bool {
+    discipline.completion != nil
   }
   
   var discipline: Discipline!

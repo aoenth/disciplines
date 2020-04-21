@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     let btn = DoneButton()
     btn.isHidden = true
     btn.translatesAutoresizingMaskIntoConstraints = false
+    btn.addTarget(self, action: #selector(doneButtonPressed), for: .touchUpInside)
     return btn
   }()
   
@@ -67,6 +68,7 @@ class ViewController: UIViewController {
   
   private func createAndAddButton(_ discipline: Discipline) {
     let button = DisciplineButton(discipline: discipline)
+    button.addTarget(self, action: #selector(btnTapped), for: .touchUpInside)
     addSwipeForDone(button)
     stackView.addArrangedSubview(button)
   }
@@ -84,6 +86,26 @@ class ViewController: UIViewController {
     salg.trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1).activate()
     stackView.topAnchor.constraint(equalToSystemSpacingBelow: salg.topAnchor, multiplier: 1).activate()
     salg.bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 1).activate()
+  }
+  
+  @objc private func btnTapped() {
+    guard let btn = activatedButton else {
+      return
+    }
+    restoreToIdentityTransformation(btn, newButtonSwiped: false)
+  }
+  
+  @objc private func doneButtonPressed() {
+    guard let btn = activatedButton as? DisciplineButton else {
+      return
+    }
+    if let discipline = btn.discipline {
+      DataManager.shared.complete(discipline: discipline) {
+        self.activatedButton?.setNeedsLayout()
+        self.activatedButton?.layoutIfNeeded()
+      }
+    }
+    btnTapped()
   }
   
   @objc private func btnSwipeLeft(_ gesture: UIPanGestureRecognizer) {
@@ -197,9 +219,12 @@ class ViewController: UIViewController {
   @objc private func clear() {
     stackView.arrangedSubviews.forEach {
       if let btn = $0 as? DisciplineButton {
-        btn.isCompleted = false
+        DataManager.shared.complete(discipline: btn.discipline)
+        btn.setNeedsLayout()
+        btn.layoutIfNeeded()
       }
     }
+    
   }
   
   @objc private func addNewDiscipline() {
