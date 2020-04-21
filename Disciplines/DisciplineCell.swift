@@ -28,13 +28,11 @@ class DisciplineCell: UITableViewCell {
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    applyCellStyle()
     setupLayout()
   }
   
   required init?(coder: NSCoder) {
     super.init(coder: coder)
-    applyCellStyle()
     setupLayout()
   }
   
@@ -43,6 +41,10 @@ class DisciplineCell: UITableViewCell {
     backgroundColor = cellBackgroundColor
     layer.borderColor = cellBorderColor.cgColor
     layer.borderWidth = 1
+  }
+  
+  override func layoutSubviews() {
+    applyCellStyle()
   }
   
   func setupLayout() {

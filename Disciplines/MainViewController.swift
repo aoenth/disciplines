@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
     tv.delegate = delegate
     tv.backgroundColor = .white
     tv.separatorStyle = .none
+    tv.bounces = false
     return tv
   }()
   
