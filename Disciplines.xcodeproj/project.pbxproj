@@ -10,11 +10,8 @@
 		0A023D3B244C6A9400D167BF /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A023D3A244C6A9400D167BF /* UIKit+Extensions.swift */; };
 		0A023D44244C7A3400D167BF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A023D43244C7A3400D167BF /* DataManager.swift */; };
 		0A023D46244C8A1800D167BF /* DisciplineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A023D45244C8A1800D167BF /* DisciplineButton.swift */; };
-		0A11A132244D00E800C298D0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11A131244D00E800C298D0 /* MainViewController.swift */; };
-		0A11A134244D012200C298D0 /* DisciplineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11A133244D012200C298D0 /* DisciplineCell.swift */; };
-		0A11A136244D020900C298D0 /* MainTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11A135244D020900C298D0 /* MainTableViewDataSource.swift */; };
-		0A11A138244D04FB00C298D0 /* MainTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11A137244D04FB00C298D0 /* MainTableViewDelegate.swift */; };
 		0A11A13B244D0E1800C298D0 /* Disciplines.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A11A139244D0E1800C298D0 /* Disciplines.xcdatamodeld */; };
+		0A6BE123244E8F5A0036C729 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6BE122244E8F5A0036C729 /* ViewController.swift */; };
 		0A8422721F74577400C93F80 /* Applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8422711F74577400C93F80 /* Applause.mp3 */; };
 		0AAF7B071F68897F00407AC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF7B061F68897E00407AC5 /* AppDelegate.swift */; };
 		0AAF7B0E1F68897F00407AC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AAF7B0D1F68897F00407AC5 /* Assets.xcassets */; };
@@ -29,11 +26,8 @@
 		0A023D3A244C6A9400D167BF /* UIKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
 		0A023D43244C7A3400D167BF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		0A023D45244C8A1800D167BF /* DisciplineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineButton.swift; sourceTree = "<group>"; };
-		0A11A131244D00E800C298D0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		0A11A133244D012200C298D0 /* DisciplineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineCell.swift; sourceTree = "<group>"; };
-		0A11A135244D020900C298D0 /* MainTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewDataSource.swift; sourceTree = "<group>"; };
-		0A11A137244D04FB00C298D0 /* MainTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewDelegate.swift; sourceTree = "<group>"; };
 		0A11A13A244D0E1800C298D0 /* Disciplines.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Disciplines.xcdatamodel; sourceTree = "<group>"; };
+		0A6BE122244E8F5A0036C729 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0A8422711F74577400C93F80 /* Applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Applause.mp3; sourceTree = "<group>"; };
 		0AAF7B031F68897E00407AC5 /* Disciplines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Disciplines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AAF7B061F68897E00407AC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,12 +77,9 @@
 		0A023D42244C79BA00D167BF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0A6BE122244E8F5A0036C729 /* ViewController.swift */,
 				0AAF7B0F1F68897F00407AC5 /* LaunchScreen.storyboard */,
 				0A023D45244C8A1800D167BF /* DisciplineButton.swift */,
-				0A11A131244D00E800C298D0 /* MainViewController.swift */,
-				0A11A135244D020900C298D0 /* MainTableViewDataSource.swift */,
-				0A11A137244D04FB00C298D0 /* MainTableViewDelegate.swift */,
-				0A11A133244D012200C298D0 /* DisciplineCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -204,13 +195,10 @@
 			files = (
 				0A023D46244C8A1800D167BF /* DisciplineButton.swift in Sources */,
 				0A023D44244C7A3400D167BF /* DataManager.swift in Sources */,
-				0A11A138244D04FB00C298D0 /* MainTableViewDelegate.swift in Sources */,
 				0A11A13B244D0E1800C298D0 /* Disciplines.xcdatamodeld in Sources */,
-				0A11A136244D020900C298D0 /* MainTableViewDataSource.swift in Sources */,
+				0A6BE123244E8F5A0036C729 /* ViewController.swift in Sources */,
 				0AD80F9B244D17D80001BAC0 /* Completion+CoreDataProperties.swift in Sources */,
 				0AD80FA0244D17F20001BAC0 /* Discipline+CoreDataClass.swift in Sources */,
-				0A11A132244D00E800C298D0 /* MainViewController.swift in Sources */,
-				0A11A134244D012200C298D0 /* DisciplineCell.swift in Sources */,
 				0AD80F9C244D17D80001BAC0 /* Discipline+CoreDataProperties.swift in Sources */,
 				0AAF7B071F68897F00407AC5 /* AppDelegate.swift in Sources */,
 				0A023D3B244C6A9400D167BF /* UIKit+Extensions.swift in Sources */,

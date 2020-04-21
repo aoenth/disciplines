@@ -68,14 +68,14 @@ class DataManager {
     }
   }
   
-  func create(_ disciplineText: String, completion: (() -> Void)? = nil) {
+  func create(_ disciplineText: String, completion: ((Discipline) -> Void)? = nil) {
     let discipline = Discipline(context: container.viewContext)
     discipline.dateIntroduced = Date()
     discipline.shortText = disciplineText
     discipline.isArchived = false
     discipline.order = 1
     saveContext()
-    completion?()
+    completion?(discipline)
   }
   
   private func saveContext() {
