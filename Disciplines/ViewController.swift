@@ -218,8 +218,8 @@ class ViewController: UIViewController {
   
   @objc private func clear() {
     stackView.arrangedSubviews.forEach {
-      if let btn = $0 as? DisciplineButton {
-        DataManager.shared.complete(discipline: btn.discipline)
+      if let btn = $0 as? DisciplineButton, let discipline = btn.discipline {
+        DataManager.shared.removeCompletion(discipline: discipline)
         btn.setNeedsLayout()
         btn.layoutIfNeeded()
       }

@@ -86,6 +86,11 @@ class DataManager {
     onComplete?()
   }
   
+  func removeCompletion(discipline: Discipline) {
+    discipline.completion = nil
+    saveContext()
+  }
+  
   private func saveContext() {
     if container.viewContext.hasChanges {
       do {
