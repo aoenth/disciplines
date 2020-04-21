@@ -61,12 +61,12 @@ class ViewController: UIViewController {
   
   private func createButtons() {
     disciplines.forEach {
-      createAndAddButton($0.shortText)
+      createAndAddButton($0)
     }
   }
   
-  private func createAndAddButton(_ text: String) {
-    let button = DisciplineButton(disciplineDescription: text)
+  private func createAndAddButton(_ discipline: Discipline) {
+    let button = DisciplineButton(discipline: discipline)
     addSwipeForDone(button)
     stackView.addArrangedSubview(button)
   }
@@ -102,7 +102,7 @@ class ViewController: UIViewController {
     
     if gesture.state == .began {
       if let btn = activatedButton, button != btn {
-        restoreToIdentityTransformation(btn)
+        restoreToIdentityTransformation(btn, newButtonSwiped: true)
         return
       } else {
         translationX = gesture.translation(in: view).x + tx
@@ -126,7 +126,7 @@ class ViewController: UIViewController {
     if shouldRestoreLeft || shouldRestoreRight {
       dragging = false
       gesture.state = .ended
-      restoreToIdentityTransformation(button)
+      restoreToIdentityTransformation(button, newButtonSwiped: false)
       return
     } else if leftSwiped || rightSwiped {
       let translationValue = min(120 / abs(translationX), 1)
@@ -141,11 +141,13 @@ class ViewController: UIViewController {
     updateButton(tx, left: tx == 0 ? swipingLeft : leftSwiped)
   }
   
-  private func restoreToIdentityTransformation(_ button: UIButton) {
+  private func restoreToIdentityTransformation(_ button: UIButton, newButtonSwiped: Bool) {
     widthConstraint?.constant = 0
     UIView.animate(withDuration: 0.2) {
       button.transform = .identity
-      self.view.layoutIfNeeded()
+      if !newButtonSwiped {
+        self.view.layoutIfNeeded()
+      }
     }
     activatedButton = nil
   }
@@ -187,7 +189,7 @@ class ViewController: UIViewController {
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     if let btn = activatedButton {
-      restoreToIdentityTransformation(btn)
+      restoreToIdentityTransformation(btn, newButtonSwiped: false)
     }
   }
   
@@ -213,7 +215,7 @@ class ViewController: UIViewController {
       if let text = alertController.textFields?.first?.text, !text.isEmpty {
         DataManager.shared.create(text) { newDiscipline in
           self.disciplines.append(newDiscipline)
-          self.createAndAddButton(newDiscipline.shortText)
+          self.createAndAddButton(newDiscipline)
         }
       }
     })

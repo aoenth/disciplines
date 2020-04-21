@@ -21,16 +21,16 @@ class DisciplineButton: UIButton {
     }
   }
   
-  var disciplineDescription: String!
+  var discipline: Discipline!
   
-  convenience init(disciplineDescription: String) {
+  convenience init(discipline: Discipline) {
     self.init()
-    self.disciplineDescription = disciplineDescription
+    self.discipline = discipline
   }
   
   override func layoutSubviews() {
     super.layoutSubviews()
-    setTitle(disciplineDescription, for: .normal)
+    setTitle(discipline.shortText, for: .normal)
     titleLabel?.numberOfLines = 2
     titleLabel?.font = UIFont.systemFont(ofSize: 36)
     titleLabel?.adjustsFontSizeToFitWidth = true
