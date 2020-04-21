@@ -182,6 +182,7 @@ class ViewController: UIViewController {
     doneButtonConstraints.forEach {
       $0.isActive = false
     }
+    doneButtonConstraints.removeAll(keepingCapacity: true)
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
