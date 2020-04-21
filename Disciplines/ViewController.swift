@@ -25,10 +25,15 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupBackground()
     setupNavigationBar()
     populateExistingData()
     createButtons()
     layoutViews()
+  }
+  
+  private func setupBackground() {
+    view.backgroundColor = .white
   }
   
   private func setupNavigationBar() {
