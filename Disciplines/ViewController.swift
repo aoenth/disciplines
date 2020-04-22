@@ -15,7 +15,7 @@ class ViewController: UIViewController {
   var disciplines = [Discipline]()
   var activatedButton: UIButton?
   var widthConstraint: NSLayoutConstraint?
-  var doneButtonConstraints = [NSLayoutConstraint]()
+  var activatedButtonConstraints = [NSLayoutConstraint]()
   var dragging = false
   
   private lazy var stackView: UIStackView = {
@@ -33,6 +33,13 @@ class ViewController: UIViewController {
     btn.translatesAutoresizingMaskIntoConstraints = false
     btn.addTarget(self, action: #selector(doneButtonPressed), for: .touchUpInside)
     return btn
+  }()
+  
+  private lazy var archiveButton: ArchiveButton = {
+    let button = ArchiveButton()
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.isHidden = true
+    return button
   }()
   
   override func viewDidLoad() {
@@ -74,13 +81,14 @@ class ViewController: UIViewController {
   }
   
   func addSwipeForDone(_ button: UIButton) {
-    let pan = UIPanGestureRecognizer(target: self, action: #selector(btnSwipeLeft))
+    let pan = UIPanGestureRecognizer(target: self, action: #selector(btnSwipe))
     button.addGestureRecognizer(pan)
   }
   
   private func layoutViews() {
     view.addSubview(stackView)
     view.addSubview(doneButton)
+    view.addSubview(archiveButton)
     let salg = view.safeAreaLayoutGuide
     stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: salg.leadingAnchor, multiplier: 1).activate()
     salg.trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1).activate()
@@ -108,7 +116,7 @@ class ViewController: UIViewController {
     btnTapped()
   }
   
-  @objc private func btnSwipeLeft(_ gesture: UIPanGestureRecognizer) {
+  @objc private func btnSwipe(_ gesture: UIPanGestureRecognizer) {
     guard let button = gesture.view as? DisciplineButton else {
       return
     }
@@ -161,6 +169,7 @@ class ViewController: UIViewController {
     
     activatedButton = button
     updateButton(tx, left: tx == 0 ? swipingLeft : leftSwiped)
+    widthConstraint?.constant = max(abs(tx) - 8, 0)
   }
   
   private func restoreToIdentityTransformation(_ button: UIButton, newButtonSwiped: Bool) {
@@ -175,27 +184,34 @@ class ViewController: UIViewController {
   }
   
   func updateButton(_ tx: CGFloat, left: Bool) {
-    if let activeButton = activatedButton, dragging == false {
-      doneButton.isHidden = false
-      removeAllConstraints()
-      createConstraints(toButton: activeButton, left: left)
-      dragging = true
+    guard let activeButton = activatedButton, dragging == false else {
+      return
     }
-    widthConstraint?.constant = max(abs(tx) - 8, 0)
+    
+    removeAllConstraints()
+    dragging = true
+    if left == true {
+      createConstraints(to: activeButton, from: doneButton, left: left)
+      doneButton.isHidden = false
+    } else {
+      createConstraints(to: activeButton, from: archiveButton, left: left)
+      archiveButton.isHidden = false
+    }
+    
   }
   
-  func createConstraints(toButton activeButton: UIButton, left: Bool) {
-    let top = doneButton.topAnchor.constraint(equalTo: activeButton.topAnchor)
+  func createConstraints(to activeButton: UIButton, from actionButton: UIButton, left: Bool) {
+    let top = actionButton.topAnchor.constraint(equalTo: activeButton.topAnchor)
     let leading: NSLayoutConstraint
     if left {
-      leading = stackView.trailingAnchor.constraint(equalTo: doneButton.trailingAnchor)
+      leading = stackView.trailingAnchor.constraint(equalTo: actionButton.trailingAnchor)
     } else {
-      leading = stackView.leadingAnchor.constraint(equalTo: doneButton.leadingAnchor)
+      leading = stackView.leadingAnchor.constraint(equalTo: actionButton.leadingAnchor)
     }
-    let width = doneButton.widthAnchor.constraint(equalToConstant: 0)
-    let bottom = activeButton.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor)
-    doneButtonConstraints = [top, leading, width, bottom]
-    doneButtonConstraints.forEach {
+    let width = actionButton.widthAnchor.constraint(equalToConstant: 0)
+    let bottom = activeButton.bottomAnchor.constraint(equalTo: actionButton.bottomAnchor)
+    activatedButtonConstraints = [top, leading, width, bottom]
+    activatedButtonConstraints.forEach {
       $0.activate()
     }
     widthConstraint = width
@@ -203,10 +219,10 @@ class ViewController: UIViewController {
   
   
   func removeAllConstraints() {
-    doneButtonConstraints.forEach {
+    activatedButtonConstraints.forEach {
       $0.isActive = false
     }
-    doneButtonConstraints.removeAll(keepingCapacity: true)
+    activatedButtonConstraints.removeAll(keepingCapacity: true)
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

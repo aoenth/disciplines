@@ -28,9 +28,9 @@ class DataManager {
       }
     }
     
-    loadSavedData()
-    removeSavedData()
-    insertDummyData()
+//    loadSavedData()
+//    removeSavedData()
+//    insertDummyData()
     loadSavedData()
   }
   

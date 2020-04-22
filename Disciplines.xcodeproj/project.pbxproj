@@ -21,6 +21,7 @@
 		0AD80F9C244D17D80001BAC0 /* Discipline+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD80F9A244D17D80001BAC0 /* Discipline+CoreDataProperties.swift */; };
 		0AD80F9F244D17F20001BAC0 /* Completion+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD80F9D244D17F20001BAC0 /* Completion+CoreDataClass.swift */; };
 		0AD80FA0244D17F20001BAC0 /* Discipline+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD80F9E244D17F20001BAC0 /* Discipline+CoreDataClass.swift */; };
+		0AD80FA22450C4140001BAC0 /* ArchiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD80FA12450C4140001BAC0 /* ArchiveButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		0AD80F9A244D17D80001BAC0 /* Discipline+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Discipline+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		0AD80F9D244D17F20001BAC0 /* Completion+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Completion+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		0AD80F9E244D17F20001BAC0 /* Discipline+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Discipline+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		0AD80FA12450C4140001BAC0 /* ArchiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				0A6BE122244E8F5A0036C729 /* ViewController.swift */,
 				0A023D45244C8A1800D167BF /* DisciplineButton.swift */,
 				0A6BE124244EBC580036C729 /* DoneButton.swift */,
+				0AD80FA12450C4140001BAC0 /* ArchiveButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				0AD80FA0244D17F20001BAC0 /* Discipline+CoreDataClass.swift in Sources */,
 				0A6BE125244EBC580036C729 /* DoneButton.swift in Sources */,
 				0AD80F9C244D17D80001BAC0 /* Discipline+CoreDataProperties.swift in Sources */,
+				0AD80FA22450C4140001BAC0 /* ArchiveButton.swift in Sources */,
 				0AAF7B071F68897F00407AC5 /* AppDelegate.swift in Sources */,
 				0A023D3B244C6A9400D167BF /* UIKit+Extensions.swift in Sources */,
 				0AD80F9F244D17F20001BAC0 /* Completion+CoreDataClass.swift in Sources */,
