@@ -39,6 +39,7 @@ class ViewController: UIViewController {
     let button = ArchiveButton()
     button.translatesAutoresizingMaskIntoConstraints = false
     button.isHidden = true
+    button.addTarget(self, action: #selector(archiveButtonPressed), for: .touchUpInside)
     return button
   }()
   
@@ -114,6 +115,22 @@ class ViewController: UIViewController {
       }
     }
     btnTapped()
+  }
+  
+  @objc private func archiveButtonPressed() {
+    guard let btn = activatedButton as? DisciplineButton else {
+      return
+    }
+    
+    if let index = disciplines.firstIndex(of: btn.discipline) {
+      disciplines.remove(at: index)
+      stackView.removeArrangedSubview(btn)
+      btn.removeFromSuperview()
+    }
+    
+    DataManager.shared.delete(discipline: btn.discipline)
+    activatedButton = nil
+    archiveButton.isHidden = true
   }
   
   @objc private func btnSwipe(_ gesture: UIPanGestureRecognizer) {

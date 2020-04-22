@@ -28,9 +28,9 @@ class DataManager {
       }
     }
     
-//    loadSavedData()
-//    removeSavedData()
-//    insertDummyData()
+    loadSavedData()
+    removeSavedData()
+    insertDummyData()
     loadSavedData()
   }
   
@@ -82,6 +82,12 @@ class DataManager {
     let completion = Completion(context: container.viewContext)
     completion.completionDate = Date()
     completion.discipline = discipline
+    saveContext()
+    onComplete?()
+  }
+  
+  func delete(discipline: Discipline, onComplete: (() -> Void)? = nil) {
+    container.viewContext.delete(discipline)
     saveContext()
     onComplete?()
   }

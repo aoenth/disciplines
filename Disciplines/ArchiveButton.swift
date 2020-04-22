@@ -17,7 +17,6 @@ class ArchiveButton: UIButton {
     setTitle("Archive", for: .normal)
     setTitleColor(.white, for: .normal)
     layer.cornerRadius = 8
-    titleLabel?.font = .systemFont(ofSize: 18)
-    titleLabel?.adjustsFontSizeToFitWidth = true
+    titleLabel?.font = .systemFont(ofSize: 16)
   }
 }
