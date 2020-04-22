@@ -139,12 +139,6 @@ class ViewController: UIViewController {
     }
     
     let tx =  button.transform.tx
-    let leftSwiped = tx <= -80
-    let rightSwiped = tx >= 80
-    let swipingLeft = gesture.velocity(in: view).x < 0
-    let swipingRight = !swipingLeft
-    let shouldRestoreLeft = tx < 80 && tx > 0 && swipingLeft
-    let shouldRestoreRight = tx > -80 && tx < 0 && swipingRight
     let translationX: CGFloat
     
     if gesture.state == .began {
@@ -169,6 +163,17 @@ class ViewController: UIViewController {
       dragging = false
       return
     }
+    
+    guard abs(translationX) > 10 else {
+      return
+    }
+    
+    let leftSwiped = tx <= -80
+    let rightSwiped = tx >= 80
+    let swipingLeft = gesture.velocity(in: view).x < 0
+    let swipingRight = !swipingLeft
+    let shouldRestoreLeft = tx < 80 && tx > 0 && swipingLeft
+    let shouldRestoreRight = tx > -80 && tx < 0 && swipingRight
     
     if shouldRestoreLeft || shouldRestoreRight {
       dragging = false
