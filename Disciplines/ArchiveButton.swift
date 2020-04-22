@@ -11,12 +11,30 @@ import UIKit
 class ArchiveButton: UIButton {
   private let btnBackgroundColor = UIColor(hex: 0xFA6400)
   
-  override func layoutSubviews() {
-    super.layoutSubviews()
-    backgroundColor = btnBackgroundColor
-    setTitle("Archive", for: .normal)
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    applyStyles()
+  }
+  
+  func applyStyles() {
     setTitleColor(.white, for: .normal)
     layer.cornerRadius = 8
-    titleLabel?.font = .systemFont(ofSize: 16)
+    titleLabel?.font = .preferredFont(forTextStyle: .body)
+    backgroundColor = btnBackgroundColor
+  }
+  
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    applyStyles()
+  }
+  
+  
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    if frame.width > 70 {
+      setTitle("Archive", for: .normal)
+    } else {
+      setTitle("", for: .normal)
+    }
   }
 }

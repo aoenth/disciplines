@@ -262,13 +262,15 @@ class ViewController: UIViewController {
   
   @objc private func addNewDiscipline() {
     let alertController = UIAlertController(title: "New Discipline",
-                                            message: "Enter a description for a new discipline",
+                                            message: "Enter a description for a new discipline.",
                                             preferredStyle: .alert)
     
     alertController.addTextField { (textField) in
       textField.placeholder = "Wake up at 4:30AM"
+      textField.autocapitalizationType = .sentences
     }
     
+    alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
     alertController.addAction(UIAlertAction(title: "OK", style: .default) { _ in
       if let text = alertController.textFields?.first?.text, !text.isEmpty {
         DataManager.shared.create(text) { newDiscipline in
@@ -278,7 +280,6 @@ class ViewController: UIViewController {
       }
     })
     
-    alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
     
     present(alertController, animated: true, completion: nil)
   }
