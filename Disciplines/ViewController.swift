@@ -155,9 +155,10 @@ class ViewController: UIViewController {
     if gesture.state == .ended {
       let tx = button.transform.tx
       if let btn = activatedButton {
+        self.widthConstraint?.constant = 80 - 8
         UIView.animate(withDuration: 0.1) {
           btn.transform = CGAffineTransform(translationX: tx > 0 ? 80 : -80, y: 0)
-          self.widthConstraint?.constant = 80 - 8
+          self.view.layoutIfNeeded()
         }
       }
       dragging = false
