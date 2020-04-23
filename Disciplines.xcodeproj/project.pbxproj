@@ -17,6 +17,9 @@
 		0A6BE125244EBC580036C729 /* DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6BE124244EBC580036C729 /* DoneButton.swift */; };
 		0A8422721F74577400C93F80 /* Applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8422711F74577400C93F80 /* Applause.mp3 */; };
 		0AAAB14E2451D4AF00C53601 /* ReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAB14D2451D4AF00C53601 /* ReportController.swift */; };
+		0AAAB1502452195500C53601 /* AxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAB14F2452195500C53601 /* AxisView.swift */; };
+		0AAAB152245219E400C53601 /* AxisView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AAAB151245219E400C53601 /* AxisView.xib */; };
+		0AAAB154245221CC00C53601 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAB153245221CC00C53601 /* BarView.swift */; };
 		0AAF7B071F68897F00407AC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF7B061F68897E00407AC5 /* AppDelegate.swift */; };
 		0AAF7B0E1F68897F00407AC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AAF7B0D1F68897F00407AC5 /* Assets.xcassets */; };
 		0AAF7B111F68897F00407AC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AAF7B0F1F68897F00407AC5 /* LaunchScreen.storyboard */; };
@@ -38,6 +41,9 @@
 		0A6BE124244EBC580036C729 /* DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneButton.swift; sourceTree = "<group>"; };
 		0A8422711F74577400C93F80 /* Applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Applause.mp3; sourceTree = "<group>"; };
 		0AAAB14D2451D4AF00C53601 /* ReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportController.swift; sourceTree = "<group>"; };
+		0AAAB14F2452195500C53601 /* AxisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisView.swift; sourceTree = "<group>"; };
+		0AAAB151245219E400C53601 /* AxisView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AxisView.xib; sourceTree = "<group>"; };
+		0AAAB153245221CC00C53601 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		0AAF7B031F68897E00407AC5 /* Disciplines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Disciplines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AAF7B061F68897E00407AC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AAF7B0D1F68897F00407AC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,6 +96,9 @@
 				0AAF7B0F1F68897F00407AC5 /* LaunchScreen.storyboard */,
 				0AAAB14C2451D49F00C53601 /* Main */,
 				0AAAB14D2451D4AF00C53601 /* ReportController.swift */,
+				0AAAB14F2452195500C53601 /* AxisView.swift */,
+				0AAAB151245219E400C53601 /* AxisView.xib */,
+				0AAAB153245221CC00C53601 /* BarView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -212,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AAF7B111F68897F00407AC5 /* LaunchScreen.storyboard in Resources */,
+				0AAAB152245219E400C53601 /* AxisView.xib in Resources */,
 				0A8422721F74577400C93F80 /* Applause.mp3 in Resources */,
 				0AAF7B0E1F68897F00407AC5 /* Assets.xcassets in Resources */,
 			);
@@ -233,12 +243,14 @@
 				0A6BE125244EBC580036C729 /* DoneButton.swift in Sources */,
 				0AD80F9C244D17D80001BAC0 /* Discipline+CoreDataProperties.swift in Sources */,
 				0AD80FA22450C4140001BAC0 /* ArchiveButton.swift in Sources */,
+				0AAAB1502452195500C53601 /* AxisView.swift in Sources */,
 				0AAF7B071F68897F00407AC5 /* AppDelegate.swift in Sources */,
 				0A023D3B244C6A9400D167BF /* UIKit+Extensions.swift in Sources */,
 				0AD80F9F244D17F20001BAC0 /* Completion+CoreDataClass.swift in Sources */,
 				0A66294624515ADE009BE771 /* AKTextView.swift in Sources */,
 				0A66294724515ADE009BE771 /* AKTextUtilities.swift in Sources */,
 				0AAAB14E2451D4AF00C53601 /* ReportController.swift in Sources */,
+				0AAAB154245221CC00C53601 /* BarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
