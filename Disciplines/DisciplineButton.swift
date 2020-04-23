@@ -25,16 +25,12 @@ class DisciplineButton: UIButton {
     self.init()
     self.discipline = discipline
     applyStyles()
-  }
-  
-  private func createResizableTextLabel() {
-    let safeBounds = safeAreaLayoutGuide.layoutFrame
-    label.frame = safeBounds.insetBy(dx: 10, dy: 10)
     addSubview(label)
   }
   
   private func applyStyles() {
     layer.cornerRadius = 8
+    layer.borderWidth = 1
   }
   
   override func layoutSubviews() {
@@ -43,8 +39,12 @@ class DisciplineButton: UIButton {
     updateButtonColors()
   }
   
+  private func createResizableTextLabel() {
+    let safeBounds = safeAreaLayoutGuide.layoutFrame
+    label.frame = safeBounds.insetBy(dx: 10, dy: 10)
+  }
+  
   private func updateButtonColors() {
-    layer.borderWidth = 1
     if isCompleted {
       layer.borderColor = cellBorderCompleteColor.cgColor
       updateTitleFontColor(to: cellFontColor.withAlphaComponent(0.5))
@@ -59,8 +59,7 @@ class DisciplineButton: UIButton {
   private func updateTitleFontColor(to color: UIColor) {
     let attributes: [NSAttributedString.Key: Any] = [
       .font: UIFont.systemFont(ofSize: 12),
-      .foregroundColor: color,
-      .backgroundColor: UIColor.clear
+      .foregroundColor: color
     ]
     label.attributedText = NSAttributedString(string: discipline.shortText, attributes: attributes)
   }
