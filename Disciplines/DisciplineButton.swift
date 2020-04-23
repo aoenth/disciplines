@@ -28,16 +28,9 @@ class DisciplineButton: UIButton {
   }
   
   private func createResizableTextLabel() {
-    label.backgroundColor = cellBackgroundColor
     let safeBounds = safeAreaLayoutGuide.layoutFrame
     label.frame = safeBounds.insetBy(dx: 10, dy: 10)
     addSubview(label)
-    
-    let attributes: [NSAttributedString.Key: Any] = [
-      .font: UIFont.systemFont(ofSize: 12),
-      .foregroundColor: cellFontColor
-    ]
-    label.attributedText = NSAttributedString(string: discipline.shortText, attributes: attributes)
   }
   
   private func applyStyles() {
@@ -46,20 +39,29 @@ class DisciplineButton: UIButton {
   
   override func layoutSubviews() {
     super.layoutSubviews()
-    updateButtonColors()
     createResizableTextLabel()
+    updateButtonColors()
   }
   
   private func updateButtonColors() {
     layer.borderWidth = 1
     if isCompleted {
       layer.borderColor = cellBorderCompleteColor.cgColor
-      setTitleColor(cellFontColor.withAlphaComponent(0.5), for: .normal)
+      updateTitleFontColor(to: cellFontColor.withAlphaComponent(0.5))
       backgroundColor = .clear
     } else {
       layer.borderColor = cellBorderColor.cgColor
-      setTitleColor(cellFontColor, for: .normal)
+      updateTitleFontColor(to: cellFontColor)
       backgroundColor = cellBackgroundColor
     }
+  }
+  
+  private func updateTitleFontColor(to color: UIColor) {
+    let attributes: [NSAttributedString.Key: Any] = [
+      .font: UIFont.systemFont(ofSize: 12),
+      .foregroundColor: color,
+      .backgroundColor: UIColor.clear
+    ]
+    label.attributedText = NSAttributedString(string: discipline.shortText, attributes: attributes)
   }
 }
