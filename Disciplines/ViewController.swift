@@ -126,7 +126,7 @@ class ViewController: UIViewController {
       disciplines.remove(at: index)
       stackView.removeArrangedSubview(btn)
       btn.removeFromSuperview()
-      UIView.animate(withDuration: 0.1) {
+      UIView.animate(withDuration: 0.2) {
         self.stackView.layoutIfNeeded()
       }
     }
@@ -274,18 +274,16 @@ class ViewController: UIViewController {
                                             message: "Enter a description for a new discipline.",
                                             preferredStyle: .alert)
     
-    alertController.addTextField { (textField) in
+    alertController.addTextField { [weak self] (textField) in
       textField.placeholder = "Wake up at 4:30AM"
       textField.autocapitalizationType = .sentences
+      textField.delegate = self
     }
     
     alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
     alertController.addAction(UIAlertAction(title: "OK", style: .default) { _ in
       if let text = alertController.textFields?.first?.text, !text.isEmpty {
-        DataManager.shared.create(text) { newDiscipline in
-          self.disciplines.append(newDiscipline)
-          self.createAndAddButton(newDiscipline)
-        }
+        self.handleCreateNewDiscipline(text)
       }
     })
     
@@ -293,7 +291,24 @@ class ViewController: UIViewController {
     present(alertController, animated: true, completion: nil)
   }
   
+  private func handleCreateNewDiscipline(_ text: String) {
+    DataManager.shared.create(text) { newDiscipline in
+      self.disciplines.append(newDiscipline)
+      self.createAndAddButton(newDiscipline)
+    }
+  }
+  
   
 }
 
+extension ViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    if let text = textField.text, !text.isEmpty {
+      handleCreateNewDiscipline(text)
+    }
+    dismiss(animated: true, completion: nil)
+    return true
+  }
+  
+}
 
