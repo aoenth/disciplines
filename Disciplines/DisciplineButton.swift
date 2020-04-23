@@ -41,7 +41,7 @@ class DisciplineButton: UIButton {
   
   private func createResizableTextLabel() {
     let safeBounds = safeAreaLayoutGuide.layoutFrame
-    label.frame = safeBounds.insetBy(dx: 10, dy: 10)
+    label.frame = safeBounds.insetBy(dx: 16, dy: 10)
   }
   
   private func updateButtonColors() {
