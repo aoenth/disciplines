@@ -126,6 +126,9 @@ class ViewController: UIViewController {
       disciplines.remove(at: index)
       stackView.removeArrangedSubview(btn)
       btn.removeFromSuperview()
+      UIView.animate(withDuration: 0.1) {
+        self.stackView.layoutIfNeeded()
+      }
     }
     
     DataManager.shared.delete(discipline: btn.discipline)
