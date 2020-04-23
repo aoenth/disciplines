@@ -24,16 +24,19 @@ class DisciplineButton: UIButton {
   convenience init(discipline: Discipline) {
     self.init()
     self.discipline = discipline
+    applyStyles()
+  }
+  
+  private func applyStyles() {
+    setTitle(discipline.shortText, for: .normal)
+    titleLabel?.numberOfLines = 0
+    titleLabel?.font = .preferredFont(forTextStyle: .headline)
+    titleLabel?.textAlignment = .center
+    layer.cornerRadius = 8
   }
   
   override func layoutSubviews() {
     super.layoutSubviews()
-    setTitle(discipline.shortText, for: .normal)
-    titleLabel?.numberOfLines = 2
-    titleLabel?.font = UIFont.systemFont(ofSize: 36)
-    titleLabel?.adjustsFontSizeToFitWidth = true
-    titleLabel?.textAlignment = .center
-    layer.cornerRadius = 8
     updateButtonColors()
   }
   

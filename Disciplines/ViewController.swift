@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
     stackView.distribution = .fillEqually
-    stackView.spacing = 10
+    stackView.spacing = 16
     return stackView
   }()
   
@@ -91,10 +91,10 @@ class ViewController: UIViewController {
     view.addSubview(doneButton)
     view.addSubview(archiveButton)
     let salg = view.safeAreaLayoutGuide
-    stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: salg.leadingAnchor, multiplier: 1).activate()
-    salg.trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1).activate()
-    stackView.topAnchor.constraint(equalToSystemSpacingBelow: salg.topAnchor, multiplier: 1).activate()
-    salg.bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 1).activate()
+    stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: salg.leadingAnchor, multiplier: 2).activate()
+    salg.trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 2).activate()
+    stackView.topAnchor.constraint(equalToSystemSpacingBelow: salg.topAnchor, multiplier: 2).activate()
+    salg.bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 2).activate()
   }
   
   @objc private func btnTapped() {
