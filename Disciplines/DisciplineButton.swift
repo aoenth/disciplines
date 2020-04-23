@@ -13,7 +13,7 @@ class DisciplineButton: UIButton {
   private let cellBorderColor = UIColor(red: 0x97/0xFF, green: 0x97/0xFF, blue: 0x97/0xFF, alpha: 1)
   private let cellBorderCompleteColor = UIColor(red: 0xBB/0xFF, green: 0xBB/0xFF, blue: 0xBB/0xFF, alpha: 1)
   private let cellFontColor = UIColor(red: 0x95/0xFF, green: 0x95/0xFF, blue: 0x95/0xFF, alpha: 1)
-  
+  private let label = AKLabel()
   
   var isCompleted: Bool {
     discipline.completion != nil
@@ -27,17 +27,27 @@ class DisciplineButton: UIButton {
     applyStyles()
   }
   
+  private func createResizableTextLabel() {
+    label.backgroundColor = cellBackgroundColor
+    let safeBounds = safeAreaLayoutGuide.layoutFrame
+    label.frame = safeBounds.insetBy(dx: 10, dy: 10)
+    addSubview(label)
+    
+    let attributes: [NSAttributedString.Key: Any] = [
+      .font: UIFont.systemFont(ofSize: 12),
+      .foregroundColor: cellFontColor
+    ]
+    label.attributedText = NSAttributedString(string: discipline.shortText, attributes: attributes)
+  }
+  
   private func applyStyles() {
-    setTitle(discipline.shortText, for: .normal)
-    titleLabel?.numberOfLines = 0
-    titleLabel?.font = .preferredFont(forTextStyle: .headline)
-    titleLabel?.textAlignment = .center
     layer.cornerRadius = 8
   }
   
   override func layoutSubviews() {
     super.layoutSubviews()
     updateButtonColors()
+    createResizableTextLabel()
   }
   
   private func updateButtonColors() {

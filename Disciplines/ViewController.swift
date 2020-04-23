@@ -218,9 +218,11 @@ class ViewController: UIViewController {
     dragging = true
     if left == true {
       createConstraints(to: activeButton, from: doneButton, left: left)
+      view.layoutIfNeeded()
       doneButton.isHidden = false
     } else {
       createConstraints(to: activeButton, from: archiveButton, left: left)
+      view.layoutIfNeeded()
       archiveButton.isHidden = false
     }
     
