@@ -46,8 +46,6 @@ class DataManager {
       }
     }
     
-    loadDisciplines()
-    loadAllCompletions()
     removeSavedDisciplines()
     removeSavedCompletions()
     insertDummyData()
@@ -90,17 +88,14 @@ class DataManager {
     getAllDisciplines().forEach {
       container.viewContext.delete($0)
     }
-    do {
-      try container.viewContext.save()
-    } catch {
-      fatalError("Could not save context")
-    }
+    saveContext()
   }
   
   func removeSavedCompletions() {
     getAllCompletions().forEach {
       container.viewContext.delete($0)
     }
+    saveContext()
   }
   
   func insertDummyData() {
