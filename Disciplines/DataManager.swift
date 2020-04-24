@@ -11,7 +11,25 @@ import CoreData
 class DataManager {
   static let shared = DataManager()
   private var container: NSPersistentContainer!
-  var fetchedResultsController: NSFetchedResultsController<Discipline>!
+  
+  private lazy  var fetchedCompletionsController: NSFetchedResultsController<Completion> = {
+    let request = Completion.createFetchRequest()
+    request.sortDescriptors = [NSSortDescriptor(key: "completionDate", ascending: true)]
+    return NSFetchedResultsController(fetchRequest: request,
+                                      managedObjectContext: container.viewContext,
+                                      sectionNameKeyPath: nil,
+                                      cacheName: nil)
+  }()
+  
+  private lazy var fetchedDisciplinesController: NSFetchedResultsController<Discipline> = {
+    let request = Discipline.createFetchRequest()
+    request.sortDescriptors = [NSSortDescriptor(key: "order", ascending: true)]
+    return NSFetchedResultsController(fetchRequest: request,
+                                      managedObjectContext: container.viewContext,
+                                      sectionNameKeyPath: nil,
+                                      cacheName: nil)
+  }()
+  
   let initial = ["Sleep at 9:30PM",
                  "Wake up at 4:30AM",
                  "Learn from any online resource whenever bored",
@@ -28,30 +46,47 @@ class DataManager {
       }
     }
     
-    loadSavedData()
-    removeSavedData()
+    loadDisciplines()
+    loadAllCompletions()
+    removeSavedDisciplines()
+    removeSavedCompletions()
     insertDummyData()
-    loadSavedData()
+    loadDisciplines()
   }
   
-  private func loadSavedData() {
-    if fetchedResultsController == nil {
-      let request = Discipline.createFetchRequest()
-      request.sortDescriptors = [NSSortDescriptor(key: "order", ascending: true)]
-      fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
-                                                            managedObjectContext: container.viewContext,
-                                                            sectionNameKeyPath: nil,
-                                                            cacheName: nil)
-    }
-    
+  func loadAllCompletions(completion: (([Completion]) -> Void)? = nil) {
+    performFetchCompletions(completion: completion)
+  }
+  
+  func loadCompletions(daysBefore: Int, completion: (([Completion]) -> Void)? = nil) {
+    let xDaysBefore = Calendar.current.startOfDay(for: Date()) - TimeInterval(daysBefore * 86400)
+    fetchedCompletionsController.fetchRequest.predicate = NSPredicate(format: "completionDate >= %@",  argumentArray: [xDaysBefore])
+    performFetchCompletions(completion: completion)
+  }
+  
+  func loadCompletions(forDiscipline discipline: Discipline,
+                       completion: @escaping ([Completion]) -> Void) {
+    fetchedCompletionsController.fetchRequest.predicate = NSPredicate(format: "discipline == %@",  argumentArray: [discipline])
+  }
+  
+  private func performFetchCompletions(completion: (([Completion]) -> Void)?) {
     do {
-      try fetchedResultsController.performFetch()
+      try fetchedCompletionsController.performFetch()
     } catch {
-      print("Fetch failed")
+      print("Fetch completion failed")
+    }
+    completion?(fetchedCompletionsController.fetchedObjects ?? [])
+  }
+  
+  private func loadDisciplines() {
+    do {
+      try fetchedDisciplinesController.performFetch()
+    } catch {
+      print("Fetch disciplines failed")
     }
   }
   
-  func removeSavedData() {
+  func removeSavedDisciplines() {
     getAllDisciplines().forEach {
       container.viewContext.delete($0)
     }
@@ -62,15 +97,23 @@ class DataManager {
     }
   }
   
+  func removeSavedCompletions() {
+    getAllCompletions().forEach {
+      container.viewContext.delete($0)
+    }
+  }
+  
   func insertDummyData() {
     initial.forEach { (text) in
       create(text, completion: nil)
     }
   }
   
-  func create(_ disciplineText: String, completion: ((Discipline) -> Void)? = nil) {
+  func create(_ disciplineText: String,
+              customCreationDate: Date = Date(),
+              completion: ((Discipline) -> Void)? = nil) {
     let discipline = Discipline(context: container.viewContext)
-    discipline.dateIntroduced = Date()
+    discipline.dateIntroduced = customCreationDate
     discipline.shortText = disciplineText
     discipline.isArchived = false
     discipline.order = 1
@@ -78,9 +121,11 @@ class DataManager {
     completion?(discipline)
   }
   
-  func complete(discipline: Discipline, onComplete: (() -> Void)? = nil) {
+  func complete(discipline: Discipline,
+                customCompletion: Date = Date(),
+                onComplete: (() -> Void)? = nil) {
     let completion = Completion(context: container.viewContext)
-    completion.completionDate = Date()
+    completion.completionDate = customCompletion
     completion.discipline = discipline
     saveContext()
     onComplete?()
@@ -108,15 +153,12 @@ class DataManager {
   }
   
   func getAllDisciplines() -> [Discipline] {
-    fetchedResultsController.fetchedObjects!
+    loadDisciplines()
+    return fetchedDisciplinesController.fetchedObjects ?? []
   }
   
-  func discipline(at row: Int) -> Discipline {
-    let result = fetchedResultsController.object(at: IndexPath(row: row, section: 0))
-    return result
-  }
-  
-  func numberOfItems() -> Int {
-    fetchedResultsController.sections?.first?.objects?.count ?? 0
+  func getAllCompletions() -> [Completion] {
+    loadAllCompletions()
+    return fetchedCompletionsController.fetchedObjects ?? []
   }
 }
