@@ -110,7 +110,6 @@ class DataManager {
     discipline.shortText = disciplineText
     discipline.isArchived = false
     discipline.order = 1
-    saveContext()
     completion?(discipline)
   }
   
@@ -135,7 +134,7 @@ class DataManager {
     saveContext()
   }
   
-  private func saveContext() {
+  func saveContext() {
     if container.viewContext.hasChanges {
       do {
         try container.viewContext.save()
