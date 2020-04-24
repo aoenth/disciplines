@@ -15,6 +15,7 @@
 		0A66294724515ADE009BE771 /* AKTextUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A66294524515ADE009BE771 /* AKTextUtilities.swift */; };
 		0A6BE123244E8F5A0036C729 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6BE122244E8F5A0036C729 /* ViewController.swift */; };
 		0A6BE125244EBC580036C729 /* DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6BE124244EBC580036C729 /* DoneButton.swift */; };
+		0A81A1E524523CAF00B57AD7 /* DisciplinesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81A1E424523CAF00B57AD7 /* DisciplinesTests.swift */; };
 		0A8422721F74577400C93F80 /* Applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8422711F74577400C93F80 /* Applause.mp3 */; };
 		0AAAB14E2451D4AF00C53601 /* ReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAB14D2451D4AF00C53601 /* ReportController.swift */; };
 		0AAAB1502452195500C53601 /* AxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAB14F2452195500C53601 /* AxisView.swift */; };
@@ -30,6 +31,16 @@
 		0AD80FA22450C4140001BAC0 /* ArchiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD80FA12450C4140001BAC0 /* ArchiveButton.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0A81A1E724523CAF00B57AD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AAF7AFB1F68897E00407AC5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0AAF7B021F68897E00407AC5;
+			remoteInfo = Disciplines;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0A023D3A244C6A9400D167BF /* UIKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
 		0A023D43244C7A3400D167BF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -39,6 +50,9 @@
 		0A66294524515ADE009BE771 /* AKTextUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKTextUtilities.swift; sourceTree = "<group>"; };
 		0A6BE122244E8F5A0036C729 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0A6BE124244EBC580036C729 /* DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneButton.swift; sourceTree = "<group>"; };
+		0A81A1E224523CAF00B57AD7 /* DisciplinesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DisciplinesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A81A1E424523CAF00B57AD7 /* DisciplinesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesTests.swift; sourceTree = "<group>"; };
+		0A81A1E624523CAF00B57AD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A8422711F74577400C93F80 /* Applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Applause.mp3; sourceTree = "<group>"; };
 		0AAAB14D2451D4AF00C53601 /* ReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportController.swift; sourceTree = "<group>"; };
 		0AAAB14F2452195500C53601 /* AxisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisView.swift; sourceTree = "<group>"; };
@@ -57,6 +71,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0A81A1DF24523CAF00B57AD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0AAF7B001F68897E00407AC5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -112,6 +133,15 @@
 			name = AccessibilityKit;
 			sourceTree = "<group>";
 		};
+		0A81A1E324523CAF00B57AD7 /* DisciplinesTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A81A1E424523CAF00B57AD7 /* DisciplinesTests.swift */,
+				0A81A1E624523CAF00B57AD7 /* Info.plist */,
+			);
+			path = DisciplinesTests;
+			sourceTree = "<group>";
+		};
 		0A8422701F74576600C93F80 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				0AAF7B051F68897E00407AC5 /* Disciplines */,
+				0A81A1E324523CAF00B57AD7 /* DisciplinesTests */,
 				0AAF7B041F68897E00407AC5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -144,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				0AAF7B031F68897E00407AC5 /* Disciplines.app */,
+				0A81A1E224523CAF00B57AD7 /* DisciplinesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,6 +195,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0A81A1E124523CAF00B57AD7 /* DisciplinesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A81A1EB24523CAF00B57AD7 /* Build configuration list for PBXNativeTarget "DisciplinesTests" */;
+			buildPhases = (
+				0A81A1DE24523CAF00B57AD7 /* Sources */,
+				0A81A1DF24523CAF00B57AD7 /* Frameworks */,
+				0A81A1E024523CAF00B57AD7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A81A1E824523CAF00B57AD7 /* PBXTargetDependency */,
+			);
+			name = DisciplinesTests;
+			productName = DisciplinesTests;
+			productReference = 0A81A1E224523CAF00B57AD7 /* DisciplinesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		0AAF7B021F68897E00407AC5 /* Disciplines */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AAF7B151F68897F00407AC5 /* Build configuration list for PBXNativeTarget "Disciplines" */;
@@ -186,10 +236,16 @@
 		0AAF7AFB1F68897E00407AC5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Monorail Apps";
 				TargetAttributes = {
+					0A81A1E124523CAF00B57AD7 = {
+						CreatedOnToolsVersion = 11.4;
+						DevelopmentTeam = 3WM87N8XYQ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 0AAF7B021F68897E00407AC5;
+					};
 					0AAF7B021F68897E00407AC5 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 3WM87N8XYQ;
@@ -211,11 +267,19 @@
 			projectRoot = "";
 			targets = (
 				0AAF7B021F68897E00407AC5 /* Disciplines */,
+				0A81A1E124523CAF00B57AD7 /* DisciplinesTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0A81A1E024523CAF00B57AD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0AAF7B011F68897E00407AC5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -230,6 +294,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0A81A1DE24523CAF00B57AD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A81A1E524523CAF00B57AD7 /* DisciplinesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0AAF7AFF1F68897E00407AC5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -256,6 +328,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0A81A1E824523CAF00B57AD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0AAF7B021F68897E00407AC5 /* Disciplines */;
+			targetProxy = 0A81A1E724523CAF00B57AD7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		0AAF7B0F1F68897F00407AC5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -268,6 +348,51 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0A81A1E924523CAF00B57AD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3WM87N8XYQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = DisciplinesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monorailapps.DisciplinesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Disciplines.app/Disciplines";
+			};
+			name = Debug;
+		};
+		0A81A1EA24523CAF00B57AD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3WM87N8XYQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = DisciplinesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monorailapps.DisciplinesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Disciplines.app/Disciplines";
+			};
+			name = Release;
+		};
 		0AAF7B131F68897F00407AC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -410,6 +535,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0A81A1EB24523CAF00B57AD7 /* Build configuration list for PBXNativeTarget "DisciplinesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A81A1E924523CAF00B57AD7 /* Debug */,
+				0A81A1EA24523CAF00B57AD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0AAF7AFE1F68897E00407AC5 /* Build configuration list for PBXProject "Disciplines" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

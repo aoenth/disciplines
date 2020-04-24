@@ -104,14 +104,14 @@ class ReportController: UIViewController {
     view.addSubview(axis)
     let salg = view.safeAreaLayoutGuide
     axis.centerYAnchor.constraint(equalTo: view.centerYAnchor).activate()
-    axis.leftAnchor.constraint(equalToSystemSpacingAfter: salg.leftAnchor, multiplier: 10).activate()
+    axis.leftAnchor.constraint(equalToSystemSpacingAfter: salg.leftAnchor, multiplier: 8).activate()
     salg.rightAnchor.constraint(equalToSystemSpacingAfter: axis.rightAnchor, multiplier: 6).activate()
     axis.heightAnchor.constraint(equalToConstant: 160).activate()
     
     view.insertSubview(bars, belowSubview: axis)
     bars.topAnchor.constraint(equalTo: axis.topAnchor).activate()
-    bars.leftAnchor.constraint(equalToSystemSpacingAfter: axis.leftAnchor, multiplier: 2).activate()
-    axis.rightAnchor.constraint(equalToSystemSpacingAfter: bars.rightAnchor, multiplier: 2).activate()
+    bars.leftAnchor.constraint(equalToSystemSpacingAfter: axis.leftAnchor, multiplier: 1).activate()
+    axis.rightAnchor.constraint(equalToSystemSpacingAfter: bars.rightAnchor, multiplier: 1).activate()
     bars.bottomAnchor.constraint(equalTo: axis.bottomAnchor).activate()
     
     for data in viewData {
