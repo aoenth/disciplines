@@ -128,7 +128,8 @@ class DataManager {
     let date = Calendar.current.startOfDay(for: completionDate)
     let completions = loadCompletions(forDiscipline: discipline)
     for completion in completions {
-      if completion.completionDate == date {
+      let completionDate = Calendar.current.startOfDay(for: completion.completionDate)
+      if completionDate == date {
         return true
       }
     }
