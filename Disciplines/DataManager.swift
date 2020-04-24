@@ -52,28 +52,28 @@ class DataManager {
     loadDisciplines()
   }
   
-  func loadAllCompletions(completion: (([Completion]) -> Void)? = nil) {
-    performFetchCompletions(completion: completion)
+  func loadAllCompletions() -> [Completion] {
+    return performFetchCompletions()
   }
   
-  func loadCompletions(daysBefore: Int, completion: (([Completion]) -> Void)? = nil) {
+  func loadCompletions(daysBefore: Int) -> [Completion] {
     let xDaysBefore = Calendar.current.startOfDay(for: Date()) - TimeInterval(daysBefore * 86400)
     fetchedCompletionsController.fetchRequest.predicate = NSPredicate(format: "completionDate >= %@",  argumentArray: [xDaysBefore])
-    performFetchCompletions(completion: completion)
+    return performFetchCompletions()
   }
   
-  func loadCompletions(forDiscipline discipline: Discipline,
-                       completion: @escaping ([Completion]) -> Void) {
+  func loadCompletions(forDiscipline discipline: Discipline) -> [Completion] {
     fetchedCompletionsController.fetchRequest.predicate = NSPredicate(format: "discipline == %@",  argumentArray: [discipline])
+    return performFetchCompletions()
   }
   
-  private func performFetchCompletions(completion: (([Completion]) -> Void)?) {
+  private func performFetchCompletions() -> [Completion] {
     do {
       try fetchedCompletionsController.performFetch()
     } catch {
       print("Fetch completion failed")
     }
-    completion?(fetchedCompletionsController.fetchedObjects ?? [])
+    return fetchedCompletionsController.fetchedObjects ?? []
   }
   
   private func loadDisciplines() {
@@ -98,29 +98,41 @@ class DataManager {
   
   func insertDummyData() {
     initial.forEach { (text) in
-      create(text, completion: nil)
+      _ = create(text)
     }
   }
   
-  func create(_ disciplineText: String,
-              customCreationDate: Date = Date(),
-              completion: ((Discipline) -> Void)? = nil) {
+  func create(_ disciplineText: String, customCreationDate: Date = Date()) -> Discipline {
     let discipline = Discipline(context: container.viewContext)
     discipline.dateIntroduced = customCreationDate
     discipline.shortText = disciplineText
     discipline.isArchived = false
     discipline.order = 1
-    completion?(discipline)
+    return discipline
   }
   
   func complete(discipline: Discipline,
                 customCompletion: Date = Date(),
                 onComplete: (() -> Void)? = nil) {
+    guard !checkDisciplineCompleted(discipline, completionDate: customCompletion) else {
+      return
+    }
     let completion = Completion(context: container.viewContext)
     completion.completionDate = customCompletion
     completion.discipline = discipline
     saveContext()
     onComplete?()
+  }
+  
+  private func checkDisciplineCompleted(_ discipline: Discipline, completionDate: Date) -> Bool {
+    let date = Calendar.current.startOfDay(for: completionDate)
+    let completions = loadCompletions(forDiscipline: discipline)
+    for completion in completions {
+      if completion.completionDate == date {
+        return true
+      }
+    }
+    return false
   }
   
   func delete(discipline: Discipline, onComplete: (() -> Void)? = nil) {
@@ -150,7 +162,6 @@ class DataManager {
   }
   
   func getAllCompletions() -> [Completion] {
-    loadAllCompletions()
-    return fetchedCompletionsController.fetchedObjects ?? []
+    return loadAllCompletions()
   }
 }

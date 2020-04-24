@@ -36,9 +36,8 @@ class DisciplinesTests: XCTestCase {
     
     var disciplines = [Discipline]()
     for i in 0 ..< initial.count {
-      dataManager.create(initial[i], customCreationDate: customCreationDates[i]) {
-        disciplines.append($0)
-      }
+      let discipline = dataManager.create(initial[i], customCreationDate: customCreationDates[i])
+      disciplines.append(discipline)
     }
       
     return disciplines
@@ -78,9 +77,8 @@ class DisciplinesTests: XCTestCase {
       dataManager.complete(discipline: disciplines[i],
                            customCompletion: completionDates[i], onComplete: nil)
     }
-    dataManager.loadCompletions(daysBefore: 7) {
-      XCTAssertEqual(completionDates.sorted(), $0.map { $0.completionDate })
-    }
+    let completions = dataManager.loadCompletions(daysBefore: 7)
+    XCTAssertEqual(completionDates.sorted(), completions.map { $0.completionDate })
   }
   
   func testEmptyStartingState() {

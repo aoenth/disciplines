@@ -294,10 +294,9 @@ class ViewController: UIViewController {
   }
   
   private func handleCreateNewDiscipline(_ text: String) {
-    DataManager.shared.create(text) { newDiscipline in
-      self.disciplines.append(newDiscipline)
-      self.createAndAddButton(newDiscipline)
-    }
+    let newDiscipline = DataManager.shared.create(text)
+    self.disciplines.append(newDiscipline)
+    self.createAndAddButton(newDiscipline)
   }
   
   

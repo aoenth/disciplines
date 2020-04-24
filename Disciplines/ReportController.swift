@@ -42,7 +42,8 @@ class ReportController: UIViewController {
   }
   
   func fetchData() {
-    DataManager.shared.loadCompletions(daysBefore: 7, completion: crunchData)
+    let completions = DataManager.shared.loadCompletions(daysBefore: 7)
+    crunchData(completions: completions)
   }
   
   private func crunchData(completions: [Completion]) {
