@@ -88,14 +88,12 @@ class DataManager {
     getAllDisciplines().forEach {
       container.viewContext.delete($0)
     }
-    saveContext()
   }
   
   func removeSavedCompletions() {
     getAllCompletions().forEach {
       container.viewContext.delete($0)
     }
-    saveContext()
   }
   
   func insertDummyData() {
