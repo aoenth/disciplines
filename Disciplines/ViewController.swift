@@ -57,11 +57,11 @@ class ViewController: UIViewController {
   }
   
   private func setupNavigationBar() {
-    let barButtonItem = UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(clear))
-    navigationItem.rightBarButtonItem = barButtonItem
+    let clearButton = UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(clear))
+    navigationItem.rightBarButtonItem = clearButton
     
-    let leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewDiscipline))
-    navigationItem.leftBarButtonItem = leftBarButtonItem
+    let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewDiscipline))
+    navigationItem.rightBarButtonItems?.append(addButton)
   }
   
   private func populateExistingData() {

@@ -82,4 +82,18 @@ class DisciplinesTests: XCTestCase {
       XCTAssertEqual(completionDates.sorted(), $0.map { $0.completionDate })
     }
   }
+  
+  func testEmptyStartingState() {
+    XCTAssertEqual(dataManager.getAllCompletions(), [Completion]())
+    XCTAssertEqual(dataManager.getAllDisciplines(), [Discipline]())
+  }
+  
+  func testCompletingDisciplinesWillGraphData() {
+    let disciplines = prepareDataManager()
+    dataManager.complete(discipline: disciplines.first!)
+    let sut = ReportController()
+    sut.fetchData()
+    let viewData = sut.viewData
+    XCTAssertEqual(viewData, [0,0,0,0,0,0,0.2])
+  }
 }

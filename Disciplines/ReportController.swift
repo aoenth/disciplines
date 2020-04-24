@@ -8,33 +8,7 @@
 
 import UIKit
 
-class TestDiscipline {
-  
-  var dateIntroduced: Date
-  var shortText: String
-  init(_ text: String, dayBeforeIntroduced: Int) {
-    self.shortText = text
-    let date = Date() - TimeInterval(dayBeforeIntroduced * 86400)
-    self.dateIntroduced = Calendar.current.startOfDay(for: date)
-  }
-}
-
-class TestCompletion {
-  var completionDate: Date = Date()
-  var discipline: TestDiscipline
-  init(daysBefore: Int, discipline: TestDiscipline) {
-    self.completionDate = Date() - TimeInterval(daysBefore * 86400)
-    self.discipline = discipline
-  }
-}
-
 class ReportController: UIViewController {
-  let disciplines = [
-    TestDiscipline("SomeText1", dayBeforeIntroduced: 10),
-    TestDiscipline("SomeText2", dayBeforeIntroduced: 2),
-    TestDiscipline("SomeText3", dayBeforeIntroduced: 3),
-    TestDiscipline("SomeText4", dayBeforeIntroduced: 4)
-  ]
   
   var viewData: [Double] = []
   
@@ -55,23 +29,24 @@ class ReportController: UIViewController {
   
   override func viewDidLoad() {
     view.backgroundColor = .white
-    crunchData()
+    setupNavigationBar()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    fetchData()
+    bars.arrangedSubviews.forEach {
+      bars.removeArrangedSubview($0)
+      $0.removeFromSuperview()
+    }
     layoutViews()
   }
   
-  private func crunchData() {
-    let completions = [
-      TestCompletion(daysBefore: 0, discipline: disciplines[0]),
-      TestCompletion(daysBefore: 1, discipline: disciplines[1]),
-      TestCompletion(daysBefore: 2, discipline: disciplines[2]),
-      TestCompletion(daysBefore: 1, discipline: disciplines[3]),
-      TestCompletion(daysBefore: 4, discipline: disciplines[0]),
-      TestCompletion(daysBefore: 5, discipline: disciplines[1]),
-      TestCompletion(daysBefore: 4, discipline: disciplines[2]),
-      TestCompletion(daysBefore: 3, discipline: disciplines[3]),
-      TestCompletion(daysBefore: 6, discipline: disciplines[0]),
-      TestCompletion(daysBefore: 7, discipline: disciplines[1])
-    ]
+  func fetchData() {
+    DataManager.shared.loadCompletions(daysBefore: 7, completion: crunchData)
+  }
+  
+  private func crunchData(completions: [Completion]) {
+    let disciplines = DataManager.shared.getAllDisciplines()
     var days = [Date: Int]()
     for completion in completions {
       let startOfDay = Calendar.current.startOfDay(for: completion.completionDate)
@@ -88,15 +63,21 @@ class ReportController: UIViewController {
       return dates
     }()
     
+    viewData.removeAll(keepingCapacity: true)
     for d in lastSevenDays.reversed() {
       var total = 0
       for discipline in disciplines {
-        if d >= discipline.dateIntroduced {
+        let dateIntroduced = Calendar.current.startOfDay(for: discipline.dateIntroduced)
+        if d >= dateIntroduced {
           total += 1
         }
       }
       let completions = days[d] ?? 0
-      viewData.append(Double(completions) / Double(total))
+      if total == 0 {
+        viewData.append(0)
+      } else {
+        viewData.append(Double(completions) / Double(total))
+      }
     }
   }
   
@@ -118,5 +99,13 @@ class ReportController: UIViewController {
       let barView = BarView(percent: data)
       bars.addArrangedSubview(barView)
     }
+  }
+  
+  private func setupNavigationBar() {
+    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Show Main", style: .plain, target: self, action: #selector(showMainController))
+  }
+  
+  @objc private func showMainController() {
+    navigationController?.pushViewController(ViewController(), animated: true)
   }
 }
