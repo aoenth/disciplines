@@ -70,7 +70,7 @@ class ReportController: UIViewController {
     return acronyms.map { (acronym) -> UILabel in
       let lbl = UILabel()
       lbl.text = acronym.dayOfWeekAcronym
-      lbl.font = UIFont.systemFont(ofSize: 27)
+      lbl.font = UIFont.systemFont(ofSize: 12)
       lbl.textAlignment = .center
       return lbl
     }
