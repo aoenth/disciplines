@@ -16,7 +16,7 @@ class DisciplineButton: UIButton {
   private let label = AKLabel()
   
   var isCompleted: Bool {
-    discipline.completion != nil
+    discipline.completions.count != 0
   }
   
   var discipline: Discipline!

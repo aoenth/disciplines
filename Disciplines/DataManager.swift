@@ -30,6 +30,7 @@ class DataManager {
                                       cacheName: nil)
   }()
   
+  
   let initial = ["Sleep at 9:30PM",
                  "Wake up at 4:30AM",
                  "Learn from any online resource whenever bored",
@@ -143,7 +144,8 @@ class DataManager {
   }
   
   func removeCompletion(discipline: Discipline) {
-    discipline.completion = nil
+    let completionsToRemove = discipline.completions
+    discipline.removeFromCompletions(completionsToRemove)
     saveContext()
   }
   

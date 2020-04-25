@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Completion" representedClassName="Completion" syncable="YES">
         <attribute name="completionDate" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="discipline" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discipline" inverseName="completion" inverseEntity="Discipline"/>
+        <relationship name="discipline" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Discipline" inverseName="completions" inverseEntity="Discipline"/>
     </entity>
     <entity name="Discipline" representedClassName="Discipline" syncable="YES">
         <attribute name="dateIntroduced" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="isArchived" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="shortText" attributeType="String"/>
-        <relationship name="completion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Completion" inverseName="discipline" inverseEntity="Completion"/>
+        <relationship name="completions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Completion" inverseName="discipline" inverseEntity="Completion"/>
     </entity>
     <elements>
         <element name="Completion" positionX="-54" positionY="18" width="128" height="73"/>
