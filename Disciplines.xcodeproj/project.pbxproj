@@ -11,6 +11,7 @@
 		0A023D44244C7A3400D167BF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A023D43244C7A3400D167BF /* DataManager.swift */; };
 		0A023D46244C8A1800D167BF /* DisciplineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A023D45244C8A1800D167BF /* DisciplineButton.swift */; };
 		0A11A13B244D0E1800C298D0 /* Disciplines.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A11A139244D0E1800C298D0 /* Disciplines.xcdatamodeld */; };
+		0A1B18292454A45700CAA576 /* ArchiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B18282454A45700CAA576 /* ArchiveCell.swift */; };
 		0A66294624515ADE009BE771 /* AKTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A66294424515ADE009BE771 /* AKTextView.swift */; };
 		0A66294724515ADE009BE771 /* AKTextUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A66294524515ADE009BE771 /* AKTextUtilities.swift */; };
 		0A6BE123244E8F5A0036C729 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6BE122244E8F5A0036C729 /* ViewController.swift */; };
@@ -48,6 +49,7 @@
 		0A023D43244C7A3400D167BF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		0A023D45244C8A1800D167BF /* DisciplineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineButton.swift; sourceTree = "<group>"; };
 		0A11A13A244D0E1800C298D0 /* Disciplines.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Disciplines.xcdatamodel; sourceTree = "<group>"; };
+		0A1B18282454A45700CAA576 /* ArchiveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveCell.swift; sourceTree = "<group>"; };
 		0A66294424515ADE009BE771 /* AKTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKTextView.swift; sourceTree = "<group>"; };
 		0A66294524515ADE009BE771 /* AKTextUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKTextUtilities.swift; sourceTree = "<group>"; };
 		0A6BE122244E8F5A0036C729 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				0AAAB14C2451D49F00C53601 /* Main */,
 				0AC66FDE2453DF500083D26B /* Graph */,
 				0AC66FDF2453DF7A0083D26B /* ArchiveController.swift */,
+				0A1B18282454A45700CAA576 /* ArchiveCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				0AC66FEE2453EFE80083D26B /* Discipline+CoreDataProperties.swift in Sources */,
 				0AAAB14E2451D4AF00C53601 /* GraphController.swift in Sources */,
 				0AAAB154245221CC00C53601 /* BarView.swift in Sources */,
+				0A1B18292454A45700CAA576 /* ArchiveCell.swift in Sources */,
 				0AC66FE02453DF7A0083D26B /* ArchiveController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

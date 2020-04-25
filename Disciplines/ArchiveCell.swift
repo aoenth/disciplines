@@ -1,0 +1,78 @@
+//
+//  ArchiveCell.swift
+//  Disciplines
+//
+//  Created by Kevin Peng on 2020-04-25.
+//  Copyright © 2020 Monorail Apps. All rights reserved.
+//
+
+import UIKit
+class ArchiveCell: UITableViewCell {
+  
+  private lazy var nameLabel: AKLabel = {
+    let lbl = AKLabel()
+    lbl.translatesAutoresizingMaskIntoConstraints = false
+    return lbl
+  }()
+  
+  private lazy var countLabel: UILabel = {
+    let lbl = UILabel()
+    lbl.translatesAutoresizingMaskIntoConstraints = false
+    lbl.textColor = .white
+    return lbl
+  }()
+  
+  private lazy var dateLabel: UILabel = {
+    let lbl = UILabel()
+    lbl.translatesAutoresizingMaskIntoConstraints = false
+    lbl.setContentHuggingPriority(.defaultHigh, for: .vertical)
+    lbl.font = .systemFont(ofSize: 16)
+    lbl.textColor = .white
+    return lbl
+  }()
+  
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    applyStyles()
+    layoutViews()
+  }
+  
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    applyStyles()
+    layoutViews()
+  }
+  
+  private func applyStyles() {
+    backgroundColor = UIColor(hex: 0x6DD400)
+    layer.cornerRadius = 8
+  }
+  
+  
+  
+  func configure(name: String, date: String, count: String) {
+    let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), .foregroundColor: UIColor.white]
+    nameLabel.attributedText = NSAttributedString(string: name, attributes: attributes)
+    dateLabel.text = "Since " + date
+    countLabel.text = count
+  }
+  
+  func layoutViews() {
+    addSubview(nameLabel)
+    nameLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1).activate()
+    nameLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1).activate()
+    trailingAnchor.constraint(equalToSystemSpacingAfter: nameLabel.trailingAnchor, multiplier: 1).activate()
+    
+    
+    addSubview(dateLabel)
+    dateLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1).activate()
+    bottomAnchor.constraint(equalToSystemSpacingBelow: dateLabel.bottomAnchor, multiplier: 1).activate()
+    
+    dateLabel.topAnchor.constraint(equalToSystemSpacingBelow: nameLabel.bottomAnchor, multiplier: 1).activate()
+    
+    
+    addSubview(countLabel)
+    countLabel.bottomAnchor.constraint(equalTo: dateLabel.bottomAnchor).activate()
+    trailingAnchor.constraint(equalToSystemSpacingAfter: countLabel.trailingAnchor, multiplier: 1).activate()
+  }
+}
