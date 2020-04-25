@@ -76,6 +76,15 @@ class ReportController: UIViewController {
     }
   }()
   
+  private lazy var xAxisStackView: UIStackView = {
+    let xAxisStackView = UIStackView()
+    xAxisStackView.axis = .horizontal
+    xAxisStackView.translatesAutoresizingMaskIntoConstraints = false
+    xAxisStackView.distribution = .fillEqually
+    xAxisStackView.spacing = 10
+    return xAxisStackView
+  }()
+  
   override func viewDidLoad() {
     view.backgroundColor = .white
     setupNavigationBar()
@@ -158,11 +167,6 @@ class ReportController: UIViewController {
       bars.addArrangedSubview(barView)
     }
     
-    let xAxisStackView = UIStackView()
-    xAxisStackView.axis = .horizontal
-    xAxisStackView.translatesAutoresizingMaskIntoConstraints = false
-    xAxisStackView.distribution = .fillEqually
-    xAxisStackView.spacing = 10
     view.addSubview(xAxisStackView)
     xAxisStackView.topAnchor.constraint(equalToSystemSpacingBelow: axis.bottomAnchor, multiplier: 1).activate()
     xAxisStackView.leftAnchor.constraint(equalToSystemSpacingAfter: axis.leftAnchor, multiplier: 1).activate()
