@@ -29,13 +29,13 @@ class TestCompletion {
 }
 
 let disciplines = [
-  TestDiscipline("SomeText1", dayBeforeIntroduced: 10),
-  TestDiscipline("SomeText2", dayBeforeIntroduced: 2),
-  TestDiscipline("SomeText3", dayBeforeIntroduced: 3),
-  TestDiscipline("SomeText4", dayBeforeIntroduced: 4)
+  TestDiscipline("A", dayBeforeIntroduced: 6),
+  TestDiscipline("B", dayBeforeIntroduced: 5),
+  TestDiscipline("C", dayBeforeIntroduced: 3),
+  TestDiscipline("D", dayBeforeIntroduced: 0)
 ]
 #endif
-class ReportController: UIViewController {
+class GraphController: UIViewController {
   
   var viewData: [Double] = []
   
@@ -107,16 +107,21 @@ class ReportController: UIViewController {
   private func crunchData(completions: [Completion]) {
     #if DEBUG
     let completions = [
-      TestCompletion(daysBefore: 0, discipline: disciplines[0]),
-      TestCompletion(daysBefore: 1, discipline: disciplines[1]),
-      TestCompletion(daysBefore: 2, discipline: disciplines[2]),
-      TestCompletion(daysBefore: 1, discipline: disciplines[3]),
-      TestCompletion(daysBefore: 4, discipline: disciplines[0]),
+      TestCompletion(daysBefore: 6, discipline: disciplines[0]),
       TestCompletion(daysBefore: 5, discipline: disciplines[1]),
       TestCompletion(daysBefore: 4, discipline: disciplines[2]),
+      TestCompletion(daysBefore: 3, discipline: disciplines[1]),
+      TestCompletion(daysBefore: 3, discipline: disciplines[2]),
       TestCompletion(daysBefore: 3, discipline: disciplines[3]),
-      TestCompletion(daysBefore: 6, discipline: disciplines[0]),
-      TestCompletion(daysBefore: 7, discipline: disciplines[1])
+      TestCompletion(daysBefore: 2, discipline: disciplines[0]),
+      TestCompletion(daysBefore: 2, discipline: disciplines[1]),
+      TestCompletion(daysBefore: 2, discipline: disciplines[2]),
+      TestCompletion(daysBefore: 1, discipline: disciplines[0]),
+      TestCompletion(daysBefore: 1, discipline: disciplines[1]),
+      TestCompletion(daysBefore: 1, discipline: disciplines[2]),
+      TestCompletion(daysBefore: 0, discipline: disciplines[0]),
+      TestCompletion(daysBefore: 0, discipline: disciplines[1]),
+      TestCompletion(daysBefore: 0, discipline: disciplines[2]),
     ]
     #else
     let disciplines = DataManager.shared.getAllDisciplines()

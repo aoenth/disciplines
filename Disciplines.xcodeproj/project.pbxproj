@@ -22,7 +22,7 @@
 		0A81A1F324535DDE00B57AD7 /* Discipline+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81A1EF24535DDE00B57AD7 /* Discipline+CoreDataProperties.swift */; };
 		0A81A1F524538DFF00B57AD7 /* Foundation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81A1F424538DFF00B57AD7 /* Foundation+Extensions.swift */; };
 		0A8422721F74577400C93F80 /* Applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8422711F74577400C93F80 /* Applause.mp3 */; };
-		0AAAB14E2451D4AF00C53601 /* ReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAB14D2451D4AF00C53601 /* ReportController.swift */; };
+		0AAAB14E2451D4AF00C53601 /* GraphController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAB14D2451D4AF00C53601 /* GraphController.swift */; };
 		0AAAB1502452195500C53601 /* AxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAB14F2452195500C53601 /* AxisView.swift */; };
 		0AAAB152245219E400C53601 /* AxisView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AAAB151245219E400C53601 /* AxisView.xib */; };
 		0AAAB154245221CC00C53601 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAB153245221CC00C53601 /* BarView.swift */; };
@@ -60,7 +60,7 @@
 		0A81A1EF24535DDE00B57AD7 /* Discipline+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Discipline+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0A81A1F424538DFF00B57AD7 /* Foundation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation+Extensions.swift"; sourceTree = "<group>"; };
 		0A8422711F74577400C93F80 /* Applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Applause.mp3; sourceTree = "<group>"; };
-		0AAAB14D2451D4AF00C53601 /* ReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportController.swift; sourceTree = "<group>"; };
+		0AAAB14D2451D4AF00C53601 /* GraphController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphController.swift; sourceTree = "<group>"; };
 		0AAAB14F2452195500C53601 /* AxisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisView.swift; sourceTree = "<group>"; };
 		0AAAB151245219E400C53601 /* AxisView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AxisView.xib; sourceTree = "<group>"; };
 		0AAAB153245221CC00C53601 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 			children = (
 				0AAF7B0F1F68897F00407AC5 /* LaunchScreen.storyboard */,
 				0AAAB14C2451D49F00C53601 /* Main */,
-				0AAAB14D2451D4AF00C53601 /* ReportController.swift */,
+				0AAAB14D2451D4AF00C53601 /* GraphController.swift */,
 				0AAAB14F2452195500C53601 /* AxisView.swift */,
 				0AAAB151245219E400C53601 /* AxisView.xib */,
 				0AAAB153245221CC00C53601 /* BarView.swift */,
@@ -325,7 +325,7 @@
 				0A66294624515ADE009BE771 /* AKTextView.swift in Sources */,
 				0A81A1F324535DDE00B57AD7 /* Discipline+CoreDataProperties.swift in Sources */,
 				0A66294724515ADE009BE771 /* AKTextUtilities.swift in Sources */,
-				0AAAB14E2451D4AF00C53601 /* ReportController.swift in Sources */,
+				0AAAB14E2451D4AF00C53601 /* GraphController.swift in Sources */,
 				0AAAB154245221CC00C53601 /* BarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

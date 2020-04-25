@@ -87,11 +87,11 @@ class DisciplinesTests: XCTestCase {
   }
   
   func testCompletingDisciplinesWillGraphData() {
-    let disciplines = prepareDataManager()
-    dataManager.complete(discipline: disciplines.first!)
-    let sut = ReportController()
+    _ = prepareDataManager()
+    let sut = GraphController()
     sut.fetchData()
     let viewData = sut.viewData
-    XCTAssertEqual(viewData, [0,0,0,0,0,0,0.2])
+    
+    XCTAssertEqual(viewData, [1,  0.5,  0.5,  1,  1,  1,  0.75])
   }
 }
