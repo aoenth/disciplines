@@ -20,6 +20,7 @@
 		0A81A1F124535DDE00B57AD7 /* Completion+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81A1ED24535DDE00B57AD7 /* Completion+CoreDataProperties.swift */; };
 		0A81A1F224535DDE00B57AD7 /* Completion+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81A1EE24535DDE00B57AD7 /* Completion+CoreDataClass.swift */; };
 		0A81A1F324535DDE00B57AD7 /* Discipline+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81A1EF24535DDE00B57AD7 /* Discipline+CoreDataProperties.swift */; };
+		0A81A1F524538DFF00B57AD7 /* Foundation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81A1F424538DFF00B57AD7 /* Foundation+Extensions.swift */; };
 		0A8422721F74577400C93F80 /* Applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8422711F74577400C93F80 /* Applause.mp3 */; };
 		0AAAB14E2451D4AF00C53601 /* ReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAB14D2451D4AF00C53601 /* ReportController.swift */; };
 		0AAAB1502452195500C53601 /* AxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAAB14F2452195500C53601 /* AxisView.swift */; };
@@ -57,6 +58,7 @@
 		0A81A1ED24535DDE00B57AD7 /* Completion+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Completion+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0A81A1EE24535DDE00B57AD7 /* Completion+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Completion+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0A81A1EF24535DDE00B57AD7 /* Discipline+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Discipline+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0A81A1F424538DFF00B57AD7 /* Foundation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation+Extensions.swift"; sourceTree = "<group>"; };
 		0A8422711F74577400C93F80 /* Applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Applause.mp3; sourceTree = "<group>"; };
 		0AAAB14D2451D4AF00C53601 /* ReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportController.swift; sourceTree = "<group>"; };
 		0AAAB14F2452195500C53601 /* AxisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisView.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				0A81A1EC24535DDE00B57AD7 /* Discipline+CoreDataClass.swift */,
 				0A81A1EF24535DDE00B57AD7 /* Discipline+CoreDataProperties.swift */,
 				0A023D3A244C6A9400D167BF /* UIKit+Extensions.swift */,
+				0A81A1F424538DFF00B57AD7 /* Foundation+Extensions.swift */,
 				0A023D43244C7A3400D167BF /* DataManager.swift */,
 				0A11A139244D0E1800C298D0 /* Disciplines.xcdatamodeld */,
 			);
@@ -314,6 +317,7 @@
 				0AD80FA22450C4140001BAC0 /* ArchiveButton.swift in Sources */,
 				0AAAB1502452195500C53601 /* AxisView.swift in Sources */,
 				0A81A1F224535DDE00B57AD7 /* Completion+CoreDataClass.swift in Sources */,
+				0A81A1F524538DFF00B57AD7 /* Foundation+Extensions.swift in Sources */,
 				0AAF7B071F68897F00407AC5 /* AppDelegate.swift in Sources */,
 				0A023D3B244C6A9400D167BF /* UIKit+Extensions.swift in Sources */,
 				0A81A1F024535DDE00B57AD7 /* Discipline+CoreDataClass.swift in Sources */,

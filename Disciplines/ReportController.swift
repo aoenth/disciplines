@@ -7,7 +7,34 @@
 //
 
 import UIKit
+#if DEBUG
+class TestDiscipline {
+  
+  var dateIntroduced: Date
+  var shortText: String
+  init(_ text: String, dayBeforeIntroduced: Int) {
+    self.shortText = text
+    let date = Date() - TimeInterval(dayBeforeIntroduced * 86400)
+    self.dateIntroduced = Calendar.current.startOfDay(for: date)
+  }
+}
 
+class TestCompletion {
+  var completionDate: Date = Date()
+  var discipline: TestDiscipline
+  init(daysBefore: Int, discipline: TestDiscipline) {
+    self.completionDate = Date() - TimeInterval(daysBefore * 86400)
+    self.discipline = discipline
+  }
+}
+
+let disciplines = [
+  TestDiscipline("SomeText1", dayBeforeIntroduced: 10),
+  TestDiscipline("SomeText2", dayBeforeIntroduced: 2),
+  TestDiscipline("SomeText3", dayBeforeIntroduced: 3),
+  TestDiscipline("SomeText4", dayBeforeIntroduced: 4)
+]
+#endif
 class ReportController: UIViewController {
   
   var viewData: [Double] = []
@@ -25,6 +52,28 @@ class ReportController: UIViewController {
     sv.distribution = .fillEqually
     sv.spacing = 10
     return sv
+  }()
+  
+  private lazy var yAxisLabels: [UILabel] = {
+    ["50%", "100%"].map {
+      let lbl = UILabel()
+      lbl.translatesAutoresizingMaskIntoConstraints = false
+      lbl.text = $0
+      lbl.textAlignment = .center
+      lbl.font = UIFont.systemFont(ofSize: 12)
+      return lbl
+    }
+  }()
+  
+  private lazy var xAxisLabels: [UILabel] = {
+    let acronyms = Date.lastNDays(7).reversed()
+    return acronyms.map { (acronym) -> UILabel in
+      let lbl = UILabel()
+      lbl.text = acronym.dayOfWeekAcronym
+      lbl.font = UIFont.systemFont(ofSize: 27)
+      lbl.textAlignment = .center
+      return lbl
+    }
   }()
   
   override func viewDidLoad() {
@@ -47,22 +96,30 @@ class ReportController: UIViewController {
   }
   
   private func crunchData(completions: [Completion]) {
+    #if DEBUG
+    let completions = [
+      TestCompletion(daysBefore: 0, discipline: disciplines[0]),
+      TestCompletion(daysBefore: 1, discipline: disciplines[1]),
+      TestCompletion(daysBefore: 2, discipline: disciplines[2]),
+      TestCompletion(daysBefore: 1, discipline: disciplines[3]),
+      TestCompletion(daysBefore: 4, discipline: disciplines[0]),
+      TestCompletion(daysBefore: 5, discipline: disciplines[1]),
+      TestCompletion(daysBefore: 4, discipline: disciplines[2]),
+      TestCompletion(daysBefore: 3, discipline: disciplines[3]),
+      TestCompletion(daysBefore: 6, discipline: disciplines[0]),
+      TestCompletion(daysBefore: 7, discipline: disciplines[1])
+    ]
+    #else
     let disciplines = DataManager.shared.getAllDisciplines()
+    #endif
+    
     var days = [Date: Int]()
     for completion in completions {
       let startOfDay = Calendar.current.startOfDay(for: completion.completionDate)
       days[startOfDay, default: 0] += 1
     }
     
-    let lastSevenDays: [Date] = {
-      var dates = [Date]()
-      for i in 0 ... 6 {
-        let date = Date() - TimeInterval(i * 86400)
-        let startOfDay = Calendar.current.startOfDay(for: date)
-        dates.append(startOfDay)
-      }
-      return dates
-    }()
+    let lastSevenDays = Date.lastNDays(7)
     
     viewData.removeAll(keepingCapacity: true)
     for d in lastSevenDays.reversed() {
@@ -100,6 +157,31 @@ class ReportController: UIViewController {
       let barView = BarView(percent: data)
       bars.addArrangedSubview(barView)
     }
+    
+    let xAxisStackView = UIStackView()
+    xAxisStackView.axis = .horizontal
+    xAxisStackView.translatesAutoresizingMaskIntoConstraints = false
+    xAxisStackView.distribution = .fillEqually
+    xAxisStackView.spacing = 10
+    view.addSubview(xAxisStackView)
+    xAxisStackView.topAnchor.constraint(equalToSystemSpacingBelow: axis.bottomAnchor, multiplier: 1).activate()
+    xAxisStackView.leftAnchor.constraint(equalToSystemSpacingAfter: axis.leftAnchor, multiplier: 1).activate()
+    axis.rightAnchor.constraint(equalToSystemSpacingAfter: xAxisStackView.rightAnchor, multiplier: 1).activate()
+    xAxisStackView.heightAnchor.constraint(equalToConstant: 30).activate()
+
+    for dayOfWeekLabel in xAxisLabels {
+      xAxisStackView.addArrangedSubview(dayOfWeekLabel)
+    }
+    
+    let fullCompletionLabel = yAxisLabels[1]
+    view.addSubview(fullCompletionLabel)
+    fullCompletionLabel.centerYAnchor.constraint(equalTo: axis.topAnchor).activate()
+    axis.leftAnchor.constraint(equalToSystemSpacingAfter: fullCompletionLabel.rightAnchor, multiplier: 1).activate()
+
+    let halfCompletionLabel = yAxisLabels[0]
+    view.addSubview(halfCompletionLabel)
+    halfCompletionLabel.centerYAnchor.constraint(equalTo: axis.centerYAnchor).activate()
+    axis.leftAnchor.constraint(equalToSystemSpacingAfter: halfCompletionLabel.rightAnchor, multiplier: 1).activate()
   }
   
   private func setupNavigationBar() {
