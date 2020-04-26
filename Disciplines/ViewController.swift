@@ -52,6 +52,10 @@ class ViewController: UIViewController {
     layoutViews()
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    btnTapped()
+  }
+  
   private func setupBackground() {
     view.backgroundColor = .white
   }

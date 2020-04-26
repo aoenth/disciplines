@@ -22,16 +22,21 @@ extension Date {
     return dates
   }
   
-  var dayOfWeekAcronym: String {
+  var dayOfWeek: String {
     let weekDay = Calendar.current.component(.weekday, from: self)
     let dateFormatter = DateFormatter()
-    let name = dateFormatter.weekdaySymbols[weekDay - 1]
+    return dateFormatter.weekdaySymbols[weekDay - 1]
+  }
+  
+  var dayOfWeekAcronym: String {
+    let name = self.dayOfWeek
     return String(name.first!)
   }
   
   var archiveDateFormat: String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MMM d, yyyy"
-    return dateFormatter.string(from: self)
+    let dateString = dateFormatter.string(from: self)
+    return dayOfWeek + ", " + dateString
   }
 }

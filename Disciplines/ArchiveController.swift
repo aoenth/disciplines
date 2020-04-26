@@ -16,6 +16,7 @@ class ArchiveController: UIViewController {
     let tv = UITableView()
     tv.register(ArchiveCell.self, forCellReuseIdentifier: cellId)
     tv.translatesAutoresizingMaskIntoConstraints = false
+    tv.backgroundColor = .white
     tv.allowsSelection = false
     tv.dataSource = self
     tv.delegate = self
