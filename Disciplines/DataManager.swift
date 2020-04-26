@@ -125,7 +125,7 @@ class DataManager {
     onComplete?()
   }
   
-  private func checkDisciplineCompleted(_ discipline: Discipline, completionDate: Date) -> Bool {
+  func checkDisciplineCompleted(_ discipline: Discipline, completionDate: Date = Date()) -> Bool {
     let date = Calendar.current.startOfDay(for: completionDate)
     let completions = loadCompletions(forDiscipline: discipline)
     for completion in completions {
