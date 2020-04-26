@@ -28,4 +28,10 @@ extension Date {
     let name = dateFormatter.weekdaySymbols[weekDay - 1]
     return String(name.first!)
   }
+  
+  var archiveDateFormat: String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MMM d, yyyy"
+    return dateFormatter.string(from: self)
+  }
 }

@@ -60,7 +60,7 @@ extension ArchiveController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as! ArchiveCell
     let discipline = disciplines[indexPath.section]
     let name = discipline.shortText
-    let date = "\(discipline.dateIntroduced)"
+    let date = discipline.dateIntroduced.archiveDateFormat
     let count = "\(discipline.completions.count)"
     cell.configure(name: name, date: date, count: count)
     return cell
