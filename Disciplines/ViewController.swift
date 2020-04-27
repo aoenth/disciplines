@@ -214,14 +214,15 @@ class ViewController: UIViewController {
   
   private func restoreToIdentityTransformation(_ button: UIButton, newButtonSwiped: Bool) {
     widthConstraint?.constant = 0
-    UIView.animate(withDuration: 0.2) {
+    UIView.animate(withDuration: 0.2, animations: {
       button.transform = .identity
       if !newButtonSwiped {
         self.view.layoutIfNeeded()
       }
-    }
-    doneButton.isHidden = true
-    archiveButton.isHidden = true
+    }, completion: { _ in
+      self.doneButton.isHidden = true
+      self.archiveButton.isHidden = true
+    })
     activatedButton = nil
   }
   
