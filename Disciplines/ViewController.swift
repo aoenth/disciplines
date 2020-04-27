@@ -220,8 +220,10 @@ class ViewController: UIViewController {
         self.view.layoutIfNeeded()
       }
     }, completion: { _ in
-      self.doneButton.isHidden = true
-      self.archiveButton.isHidden = true
+      if !newButtonSwiped {
+        self.archiveButton.isHidden = true
+        self.doneButton.isHidden = true
+      }
     })
     activatedButton = nil
   }
