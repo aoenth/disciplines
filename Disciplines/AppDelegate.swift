@@ -17,7 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = UINavigationController(rootViewController: ArchiveController())
+    let navigationController = UINavigationController(rootViewController: ViewController())
+    navigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
+    
+    let archiveController = ArchiveController()
+    archiveController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1)
+    
+    let graphController = GraphController()
+    graphController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 2)
+
+    let tabBarController = UITabBarController()
+    tabBarController.viewControllers = [archiveController, navigationController, graphController]
+    window?.rootViewController = tabBarController
     window?.makeKeyAndVisible()
     return true
   }

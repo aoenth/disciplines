@@ -18,6 +18,7 @@ class ArchiveController: UIViewController {
     tv.translatesAutoresizingMaskIntoConstraints = false
     tv.backgroundColor = .white
     tv.allowsSelection = false
+    tv.separatorStyle = .none
     tv.dataSource = self
     tv.delegate = self
     return tv

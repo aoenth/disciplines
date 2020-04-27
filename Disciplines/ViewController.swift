@@ -220,6 +220,8 @@ class ViewController: UIViewController {
         self.view.layoutIfNeeded()
       }
     }
+    doneButton.isHidden = true
+    archiveButton.isHidden = true
     activatedButton = nil
   }
   

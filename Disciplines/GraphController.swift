@@ -7,34 +7,34 @@
 //
 
 import UIKit
-#if DEBUG
-class TestDiscipline {
-  
-  var dateIntroduced: Date
-  var shortText: String
-  init(_ text: String, dayBeforeIntroduced: Int) {
-    self.shortText = text
-    let date = Date() - TimeInterval(dayBeforeIntroduced * 86400)
-    self.dateIntroduced = Calendar.current.startOfDay(for: date)
-  }
-}
-
-class TestCompletion {
-  var completionDate: Date = Date()
-  var discipline: TestDiscipline
-  init(daysBefore: Int, discipline: TestDiscipline) {
-    self.completionDate = Date() - TimeInterval(daysBefore * 86400)
-    self.discipline = discipline
-  }
-}
-
-let disciplines = [
-  TestDiscipline("A", dayBeforeIntroduced: 6),
-  TestDiscipline("B", dayBeforeIntroduced: 5),
-  TestDiscipline("C", dayBeforeIntroduced: 3),
-  TestDiscipline("D", dayBeforeIntroduced: 0)
-]
-#endif
+//#if DEBUG
+//class TestDiscipline {
+//
+//  var dateIntroduced: Date
+//  var shortText: String
+//  init(_ text: String, dayBeforeIntroduced: Int) {
+//    self.shortText = text
+//    let date = Date() - TimeInterval(dayBeforeIntroduced * 86400)
+//    self.dateIntroduced = Calendar.current.startOfDay(for: date)
+//  }
+//}
+//
+//class TestCompletion {
+//  var completionDate: Date = Date()
+//  var discipline: TestDiscipline
+//  init(daysBefore: Int, discipline: TestDiscipline) {
+//    self.completionDate = Date() - TimeInterval(daysBefore * 86400)
+//    self.discipline = discipline
+//  }
+//}
+//
+//let disciplines = [
+//  TestDiscipline("A", dayBeforeIntroduced: 6),
+//  TestDiscipline("B", dayBeforeIntroduced: 5),
+//  TestDiscipline("C", dayBeforeIntroduced: 3),
+//  TestDiscipline("D", dayBeforeIntroduced: 0)
+//]
+//#endif
 class GraphController: UIViewController {
   
   var viewData: [Double] = []
@@ -105,27 +105,27 @@ class GraphController: UIViewController {
   }
   
   private func crunchData(completions: [Completion]) {
-    #if DEBUG
-    let completions = [
-      TestCompletion(daysBefore: 6, discipline: disciplines[0]),
-      TestCompletion(daysBefore: 5, discipline: disciplines[1]),
-      TestCompletion(daysBefore: 4, discipline: disciplines[2]),
-      TestCompletion(daysBefore: 3, discipline: disciplines[1]),
-      TestCompletion(daysBefore: 3, discipline: disciplines[2]),
-      TestCompletion(daysBefore: 3, discipline: disciplines[3]),
-      TestCompletion(daysBefore: 2, discipline: disciplines[0]),
-      TestCompletion(daysBefore: 2, discipline: disciplines[1]),
-      TestCompletion(daysBefore: 2, discipline: disciplines[2]),
-      TestCompletion(daysBefore: 1, discipline: disciplines[0]),
-      TestCompletion(daysBefore: 1, discipline: disciplines[1]),
-      TestCompletion(daysBefore: 1, discipline: disciplines[2]),
-      TestCompletion(daysBefore: 0, discipline: disciplines[0]),
-      TestCompletion(daysBefore: 0, discipline: disciplines[1]),
-      TestCompletion(daysBefore: 0, discipline: disciplines[2]),
-    ]
-    #else
+//    #if DEBUG
+//    let completions = [
+//      TestCompletion(daysBefore: 6, discipline: disciplines[0]),
+//      TestCompletion(daysBefore: 5, discipline: disciplines[1]),
+//      TestCompletion(daysBefore: 4, discipline: disciplines[2]),
+//      TestCompletion(daysBefore: 3, discipline: disciplines[1]),
+//      TestCompletion(daysBefore: 3, discipline: disciplines[2]),
+//      TestCompletion(daysBefore: 3, discipline: disciplines[3]),
+//      TestCompletion(daysBefore: 2, discipline: disciplines[0]),
+//      TestCompletion(daysBefore: 2, discipline: disciplines[1]),
+//      TestCompletion(daysBefore: 2, discipline: disciplines[2]),
+//      TestCompletion(daysBefore: 1, discipline: disciplines[0]),
+//      TestCompletion(daysBefore: 1, discipline: disciplines[1]),
+//      TestCompletion(daysBefore: 1, discipline: disciplines[2]),
+//      TestCompletion(daysBefore: 0, discipline: disciplines[0]),
+//      TestCompletion(daysBefore: 0, discipline: disciplines[1]),
+//      TestCompletion(daysBefore: 0, discipline: disciplines[2]),
+//    ]
+//    #else
     let disciplines = DataManager.shared.getAllDisciplines()
-    #endif
+//    #endif
     
     var days = [Date: Int]()
     for completion in completions {

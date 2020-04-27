@@ -47,9 +47,9 @@ class DataManager {
       }
     }
     
-    removeSavedDisciplines()
-    removeSavedCompletions()
-    insertDummyData()
+//    removeSavedDisciplines()
+//    removeSavedCompletions()
+//    insertDummyData()
   }
   
   func loadAllCompletions() -> [Completion] {
