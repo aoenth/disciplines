@@ -50,7 +50,6 @@ class DataManager {
     removeSavedDisciplines()
     removeSavedCompletions()
     insertDummyData()
-    loadDisciplines()
   }
   
   func loadAllCompletions() -> [Completion] {
@@ -68,6 +67,13 @@ class DataManager {
     return performFetchCompletions()
   }
   
+  func loadDisciplines(showArchived: Bool) -> [Discipline] {
+    if !showArchived {
+      fetchedDisciplinesController.fetchRequest.predicate = NSPredicate(format: "isArchived == %@", argumentArray: [false])
+    }
+    return performFetchDiscipline()
+  }
+  
   private func performFetchCompletions() -> [Completion] {
     do {
       try fetchedCompletionsController.performFetch()
@@ -77,13 +83,15 @@ class DataManager {
     return fetchedCompletionsController.fetchedObjects ?? []
   }
   
-  private func loadDisciplines() {
+  private func performFetchDiscipline() -> [Discipline] {
     do {
       try fetchedDisciplinesController.performFetch()
     } catch {
       print("Fetch disciplines failed")
     }
+    return fetchedDisciplinesController.fetchedObjects ?? []
   }
+  
   
   func removeSavedDisciplines() {
     getAllDisciplines().forEach {
@@ -159,9 +167,12 @@ class DataManager {
     }
   }
   
+  func getActiveDisciplines() -> [Discipline] {
+    return loadDisciplines(showArchived: false)
+  }
+  
   func getAllDisciplines() -> [Discipline] {
-    loadDisciplines()
-    return fetchedDisciplinesController.fetchedObjects ?? []
+    return loadDisciplines(showArchived: true)
   }
   
   func getAllCompletions() -> [Completion] {

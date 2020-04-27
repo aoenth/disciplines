@@ -27,10 +27,10 @@ class ArchiveController: UIViewController {
     setupBackground()
     setupNavigationBar()
     layoutViews()
-    disciplines.append(contentsOf: DataManager.shared.getAllDisciplines())
   }
   
   override func viewDidAppear(_ animated: Bool) {
+    disciplines = DataManager.shared.getAllDisciplines()
     tableView.reloadData()
   }
   
