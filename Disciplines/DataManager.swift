@@ -70,6 +70,8 @@ class DataManager {
   func loadDisciplines(showArchived: Bool) -> [Discipline] {
     if !showArchived {
       fetchedDisciplinesController.fetchRequest.predicate = NSPredicate(format: "isArchived == %@", argumentArray: [false])
+    } else {
+      fetchedDisciplinesController.fetchRequest.predicate = nil
     }
     return performFetchDiscipline()
   }
@@ -145,10 +147,12 @@ class DataManager {
     return false
   }
   
-  func delete(discipline: Discipline, onComplete: (() -> Void)? = nil) {
+  func delete(discipline: Discipline) {
     container.viewContext.delete(discipline)
-    saveContext()
-    onComplete?()
+  }
+  
+  func archive(discipline: Discipline) {
+    discipline.isArchived = true
   }
   
   func removeCompletion(discipline: Discipline) {

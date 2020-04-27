@@ -69,7 +69,7 @@ class ViewController: UIViewController {
   }
   
   private func populateExistingData() {
-    disciplines.append(contentsOf: DataManager.shared.getAllDisciplines())
+    disciplines.append(contentsOf: DataManager.shared.getActiveDisciplines())
   }
   
   private func createButtons() {
@@ -135,7 +135,7 @@ class ViewController: UIViewController {
       }
     }
     
-    DataManager.shared.delete(discipline: btn.discipline)
+    DataManager.shared.archive(discipline: btn.discipline)
     activatedButton = nil
     archiveButton.isHidden = true
   }
