@@ -155,10 +155,10 @@ class DataManager {
     discipline.isArchived = true
   }
   
-  func removeCompletion(discipline: Discipline) {
-    let completionsToRemove = discipline.completions
-    discipline.removeFromCompletions(completionsToRemove)
-    saveContext()
+  func removeCompletion() {
+    loadCompletions(daysBefore: 0).forEach {
+      container.viewContext.delete($0)
+    }
   }
   
   func saveContext() {

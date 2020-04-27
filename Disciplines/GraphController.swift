@@ -86,7 +86,11 @@ class GraphController: UIViewController {
   }()
   
   override func viewDidLoad() {
-    view.backgroundColor = .white
+    if #available(iOS 13, *) {
+      view.backgroundColor = .systemBackground
+    } else {
+      view.backgroundColor = .white
+    }
     setupNavigationBar()
   }
   

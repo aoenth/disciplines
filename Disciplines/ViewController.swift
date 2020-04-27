@@ -69,7 +69,7 @@ class ViewController: UIViewController {
   }
   
   private func populateExistingData() {
-    disciplines.append(contentsOf: DataManager.shared.getActiveDisciplines())
+    disciplines = DataManager.shared.getActiveDisciplines()
   }
   
   private func createButtons() {
@@ -277,14 +277,12 @@ class ViewController: UIViewController {
   
   
   @objc private func clear() {
+    DataManager.shared.removeCompletion()
+    populateExistingData()
     stackView.arrangedSubviews.forEach {
-      if let btn = $0 as? DisciplineButton, let discipline = btn.discipline {
-        DataManager.shared.removeCompletion(discipline: discipline)
-        btn.setNeedsLayout()
-        btn.layoutIfNeeded()
-      }
+      $0.setNeedsLayout()
+      $0.layoutIfNeeded()
     }
-    
   }
   
   @objc private func addNewDiscipline() {
