@@ -16,6 +16,7 @@
 		0A66294724515ADE009BE771 /* AKTextUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A66294524515ADE009BE771 /* AKTextUtilities.swift */; };
 		0A6BE123244E8F5A0036C729 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6BE122244E8F5A0036C729 /* ViewController.swift */; };
 		0A6BE125244EBC580036C729 /* DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6BE124244EBC580036C729 /* DoneButton.swift */; };
+		0A73772024569ADC007E9EE3 /* Discipline+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A73771F24569ADC007E9EE3 /* Discipline+Extensions.swift */; };
 		0A81A1E524523CAF00B57AD7 /* DisciplinesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81A1E424523CAF00B57AD7 /* DisciplinesTests.swift */; };
 		0A81A1F524538DFF00B57AD7 /* Foundation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81A1F424538DFF00B57AD7 /* Foundation+Extensions.swift */; };
 		0A8422721F74577400C93F80 /* Applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A8422711F74577400C93F80 /* Applause.mp3 */; };
@@ -54,6 +55,7 @@
 		0A66294524515ADE009BE771 /* AKTextUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKTextUtilities.swift; sourceTree = "<group>"; };
 		0A6BE122244E8F5A0036C729 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0A6BE124244EBC580036C729 /* DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneButton.swift; sourceTree = "<group>"; };
+		0A73771F24569ADC007E9EE3 /* Discipline+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Discipline+Extensions.swift"; sourceTree = "<group>"; };
 		0A81A1E224523CAF00B57AD7 /* DisciplinesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DisciplinesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A81A1E424523CAF00B57AD7 /* DisciplinesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesTests.swift; sourceTree = "<group>"; };
 		0A81A1E624523CAF00B57AD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			children = (
 				0AC66FE92453EFE80083D26B /* Discipline+CoreDataClass.swift */,
 				0AC66FEA2453EFE80083D26B /* Discipline+CoreDataProperties.swift */,
+				0A73771F24569ADC007E9EE3 /* Discipline+Extensions.swift */,
 				0AC66FEB2453EFE80083D26B /* Completion+CoreDataClass.swift */,
 				0AC66FEC2453EFE80083D26B /* Completion+CoreDataProperties.swift */,
 				0A023D3A244C6A9400D167BF /* UIKit+Extensions.swift */,
@@ -337,6 +340,7 @@
 				0A023D3B244C6A9400D167BF /* UIKit+Extensions.swift in Sources */,
 				0AC66FEF2453EFE80083D26B /* Completion+CoreDataClass.swift in Sources */,
 				0A66294624515ADE009BE771 /* AKTextView.swift in Sources */,
+				0A73772024569ADC007E9EE3 /* Discipline+Extensions.swift in Sources */,
 				0A66294724515ADE009BE771 /* AKTextUtilities.swift in Sources */,
 				0AC66FEE2453EFE80083D26B /* Discipline+CoreDataProperties.swift in Sources */,
 				0AAAB14E2451D4AF00C53601 /* GraphController.swift in Sources */,

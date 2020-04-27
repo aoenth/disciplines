@@ -19,6 +19,7 @@ class ArchiveCell: UITableViewCell {
     let lbl = UILabel()
     lbl.translatesAutoresizingMaskIntoConstraints = false
     lbl.textColor = .white
+    lbl.font = .systemFont(ofSize: 27)
     return lbl
   }()
   

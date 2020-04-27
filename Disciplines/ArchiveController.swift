@@ -30,7 +30,7 @@ class ArchiveController: UIViewController {
   }
   
   override func viewDidAppear(_ animated: Bool) {
-    disciplines = DataManager.shared.getAllDisciplines()
+    disciplines = DataManager.shared.getAllDisciplines().sorted()
     tableView.reloadData()
   }
   
