@@ -298,7 +298,7 @@ class ViewController: UIViewController {
     
     alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
     alertController.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-      if let text = alertController.textFields?.first?.text, !text.isEmpty {
+      if let text = alertController.textFields?.first?.text {
         self.handleCreateNewDiscipline(text)
       }
     })
@@ -308,17 +308,48 @@ class ViewController: UIViewController {
   }
   
   private func handleCreateNewDiscipline(_ text: String) {
+    guard isInputValid(text) else {
+      return
+    }
     let newDiscipline = DataManager.shared.create(text)
     self.disciplines.append(newDiscipline)
     self.createAndAddButton(newDiscipline)
   }
   
+  private func isInputValid(_ text: String) -> Bool {
+    guard inputNotEmptyString(text) else {
+      showErrorMessage("Sorry, Discipline name cannot be empty.")
+      return false
+    }
+    
+    guard inputHasValidCharacters(text) else {
+      showErrorMessage("Sorry, Discipline name cannot be all spaces.")
+      return false
+    }
+    
+    return true
+  }
+  
+  private func inputNotEmptyString(_ text: String) -> Bool {
+    return text.isEmpty == false
+  }
+  
+  private func inputHasValidCharacters(_ text: String) -> Bool {
+    let irrelevantCharacterSet = CharacterSet.whitespacesAndNewlines
+    return text.trimmingCharacters(in: irrelevantCharacterSet).isEmpty == false
+  }
+  
+  private func showErrorMessage(_ message: String) {
+    let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    present(alertController, animated: true, completion: nil)
+  }
   
 }
 
 extension ViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    if let text = textField.text, !text.isEmpty {
+    if let text = textField.text {
       handleCreateNewDiscipline(text)
     }
     dismiss(animated: true, completion: nil)
