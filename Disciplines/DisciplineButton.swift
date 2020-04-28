@@ -15,10 +15,6 @@ class DisciplineButton: UIButton {
   private let cellFontColor = UIColor(red: 0x95/0xFF, green: 0x95/0xFF, blue: 0x95/0xFF, alpha: 1)
   private let label = AKLabel()
   
-  var isCompleted: Bool {
-    discipline.completions.count != 0
-  }
-  
   var discipline: Discipline!
   
   convenience init(discipline: Discipline) {
@@ -45,7 +41,7 @@ class DisciplineButton: UIButton {
   }
   
   private func updateButtonColors() {
-    if isCompleted {
+    if discipline.isCompletedForToday {
       layer.borderColor = cellBorderCompleteColor.cgColor
       updateTitleFontColor(to: cellFontColor.withAlphaComponent(0.5))
       backgroundColor = .clear
