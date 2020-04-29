@@ -14,9 +14,9 @@ extension Discipline: Comparable {
   }
   
   var isCompletedForToday: Bool {
-    completions.contains { (date) -> Bool in
-      if let date = date as? Date {
-        let storedDate = Calendar.current.startOfDay(for: date)
+    completions.contains { (completion) -> Bool in
+      if let c = completion as? Completion {
+        let storedDate = Calendar.current.startOfDay(for: c.completionDate)
         let today = Calendar.current.startOfDay(for: Date())
         return storedDate == today
       } else {

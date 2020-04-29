@@ -184,8 +184,7 @@ class ViewController: UIViewController {
     let shouldRestoreRight = tx > -80 && tx < 0 && swipingRight
     
     if swipingLeft {
-      let isCompletedForToday = DataManager.shared.checkDisciplineCompleted(button.discipline)
-      if isCompletedForToday {
+      if button.discipline.isCompletedForToday {
         dragging = false
         gesture.state = .ended
         restoreToIdentityTransformation(button, newButtonSwiped: false)

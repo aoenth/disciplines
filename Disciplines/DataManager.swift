@@ -47,9 +47,9 @@ class DataManager {
       }
     }
     
-//    removeSavedDisciplines()
-//    removeSavedCompletions()
-//    insertDummyData()
+    removeSavedDisciplines()
+    removeSavedCompletions()
+    insertDummyData()
   }
   
   func loadAllCompletions() -> [Completion] {
@@ -125,7 +125,7 @@ class DataManager {
   func complete(discipline: Discipline,
                 customCompletion: Date = Date(),
                 onComplete: (() -> Void)? = nil) {
-    guard !checkDisciplineCompleted(discipline, completionDate: customCompletion) else {
+    guard !discipline.isCompletedForToday else {
       return
     }
     let completion = Completion(context: container.viewContext)
@@ -133,18 +133,6 @@ class DataManager {
     completion.discipline = discipline
     saveContext()
     onComplete?()
-  }
-  
-  func checkDisciplineCompleted(_ discipline: Discipline, completionDate: Date = Date()) -> Bool {
-    let date = Calendar.current.startOfDay(for: completionDate)
-    let completions = loadCompletions(forDiscipline: discipline)
-    for completion in completions {
-      let completionDate = Calendar.current.startOfDay(for: completion.completionDate)
-      if completionDate == date {
-        return true
-      }
-    }
-    return false
   }
   
   func delete(discipline: Discipline) {
