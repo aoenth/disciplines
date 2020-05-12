@@ -19,14 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.main.bounds)
     
     let viewController = ViewController()
-    viewController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
+    viewController.tabBarItem = UITabBarItem(title: "Today", image: #imageLiteral(resourceName: "Today Icon"), tag: 0)
     let navigationController = UINavigationController(rootViewController: viewController)
     
     let archiveController = ArchiveController()
     archiveController.tabBarItem = UITabBarItem(title: "Achievements", image: #imageLiteral(resourceName: "Achievement Icon"), tag: 1)
     
     let graphController = GraphController()
-    graphController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 2)
+    graphController.tabBarItem = UITabBarItem(title: "This Week", image: #imageLiteral(resourceName: "This Week Icon"), tag: 2)
 
     let tabBarController = UITabBarController()
     tabBarController.viewControllers = [archiveController, navigationController, graphController]
