@@ -17,11 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
-    let navigationController = UINavigationController(rootViewController: ViewController())
-    navigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
+    
+    let viewController = ViewController()
+    viewController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
+    let navigationController = UINavigationController(rootViewController: viewController)
     
     let archiveController = ArchiveController()
-    archiveController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1)
+    archiveController.tabBarItem = UITabBarItem(title: "Achievements", image: #imageLiteral(resourceName: "Achievement Icon"), tag: 1)
     
     let graphController = GraphController()
     graphController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 2)
