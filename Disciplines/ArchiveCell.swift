@@ -19,7 +19,7 @@ class ArchiveCell: UITableViewCell {
     let lbl = UILabel()
     lbl.translatesAutoresizingMaskIntoConstraints = false
     lbl.textColor = .white
-    lbl.font = .systemFont(ofSize: 27)
+    lbl.font = .systemFont(ofSize: 16)
     return lbl
   }()
   
@@ -55,7 +55,8 @@ class ArchiveCell: UITableViewCell {
     let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), .foregroundColor: UIColor.white]
     nameLabel.attributedText = NSAttributedString(string: name, attributes: attributes)
     dateLabel.text = "Since " + date
-    countLabel.text = count
+    
+    countLabel.text = "Completed \(count)×"
   }
   
   func layoutViews() {
