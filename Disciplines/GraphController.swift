@@ -86,11 +86,7 @@ class GraphController: UIViewController {
   }()
   
   override func viewDidLoad() {
-    if #available(iOS 13, *) {
-      view.backgroundColor = .systemBackground
-    } else {
-      view.backgroundColor = .white
-    }
+    view.setBackground()
     setupNavigationBar()
   }
   
@@ -104,7 +100,7 @@ class GraphController: UIViewController {
   }
   
   func fetchData() {
-    let completions = DataManager.shared.loadCompletions(daysBefore: 7)
+    let completions = DataManager.shared.loadCompletions(daysBefore: 7, showArchived: false)
     crunchData(completions: completions)
   }
   
@@ -128,7 +124,7 @@ class GraphController: UIViewController {
 //      TestCompletion(daysBefore: 0, discipline: disciplines[2]),
 //    ]
 //    #else
-    let disciplines = DataManager.shared.getAllDisciplines()
+    let disciplines = DataManager.shared.getActiveDisciplines()
 //    #endif
     
     var days = [Date: Int]()

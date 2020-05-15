@@ -56,9 +56,17 @@ class DataManager {
     return performFetchCompletions()
   }
   
-  func loadCompletions(daysBefore: Int) -> [Completion] {
+  func loadCompletions(daysBefore: Int, showArchived: Bool = true) -> [Completion] {
     let xDaysBefore = Calendar.current.startOfDay(for: Date()) - TimeInterval(daysBefore * 86400)
-    fetchedCompletionsController.fetchRequest.predicate = NSPredicate(format: "completionDate >= %@",  argumentArray: [xDaysBefore])
+    let predicate: NSPredicate
+    if showArchived == false {
+      let completionPredicate = NSPredicate(format: "completionDate >= %@", argumentArray: [xDaysBefore])
+      let archivePredicate = NSPredicate(format: "discipline.isArchived == false")
+      predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [completionPredicate, archivePredicate])
+    } else {
+      predicate = NSPredicate(format: "completionDate >= %@",  argumentArray: [xDaysBefore])
+    }
+    fetchedCompletionsController.fetchRequest.predicate = predicate
     return performFetchCompletions()
   }
   
@@ -68,7 +76,7 @@ class DataManager {
   }
   
   func loadDisciplines(showArchived: Bool) -> [Discipline] {
-    if !showArchived {
+    if showArchived == false {
       fetchedDisciplinesController.fetchRequest.predicate = NSPredicate(format: "isArchived == %@", argumentArray: [false])
     } else {
       fetchedDisciplinesController.fetchRequest.predicate = nil
@@ -141,6 +149,7 @@ class DataManager {
   
   func archive(discipline: Discipline) {
     discipline.isArchived = true
+    saveContext()
   }
   
   func removeCompletion() {
