@@ -92,4 +92,15 @@ extension ArchiveController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     10
   }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      let disciplineToDelete = self.disciplines[indexPath.section]
+      disciplines.remove(at: indexPath.section)
+      DataManager.shared.delete(discipline: disciplineToDelete)
+      DataManager.shared.saveContext()
+      let indexSet = IndexSet([indexPath.section])
+      tableView.deleteSections(indexSet, with: .automatic)
+    }
+  }
 }
