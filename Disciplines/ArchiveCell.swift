@@ -63,7 +63,7 @@ class ArchiveCell: UITableViewCell {
   func layoutViews() {
     addSubview(nameLabel)
     nameLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1).activate()
-    nameLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1).activate()
+    nameLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 2).activate()
     trailingAnchor.constraint(equalToSystemSpacingAfter: nameLabel.trailingAnchor, multiplier: 1).activate()
     
     
@@ -71,11 +71,11 @@ class ArchiveCell: UITableViewCell {
     dateLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1).activate()
     bottomAnchor.constraint(equalToSystemSpacingBelow: dateLabel.bottomAnchor, multiplier: 1).activate()
     
-    dateLabel.topAnchor.constraint(equalToSystemSpacingBelow: nameLabel.bottomAnchor, multiplier: 1).activate()
-    
     
     addSubview(countLabel)
-    countLabel.bottomAnchor.constraint(equalTo: dateLabel.bottomAnchor).activate()
+    countLabel.lastBaselineAnchor.constraint(equalTo: dateLabel.lastBaselineAnchor).activate()
     trailingAnchor.constraint(equalToSystemSpacingAfter: countLabel.trailingAnchor, multiplier: 1).activate()
+    
+    dateLabel.topAnchor.constraint(equalToSystemSpacingBelow: nameLabel.bottomAnchor, multiplier: 2).activate()
   }
 }
