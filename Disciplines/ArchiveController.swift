@@ -16,7 +16,7 @@ class ArchiveController: UIViewController {
     let tv = UITableView()
     tv.register(ArchiveCell.self, forCellReuseIdentifier: cellId)
     tv.translatesAutoresizingMaskIntoConstraints = false
-    tv.backgroundColor = .white
+    tv.setBackground()
     tv.allowsSelection = false
     tv.separatorStyle = .none
     tv.dataSource = self
@@ -29,14 +29,14 @@ class ArchiveController: UIViewController {
     setupNavigationBar()
     layoutViews()
   }
-  
+
   override func viewDidAppear(_ animated: Bool) {
     disciplines = DataManager.shared.getAllDisciplines().sorted()
     tableView.reloadData()
   }
   
   private func setupBackground() {
-    view.backgroundColor = .white
+    view.setBackground()
   }
   
   private func setupNavigationBar() {

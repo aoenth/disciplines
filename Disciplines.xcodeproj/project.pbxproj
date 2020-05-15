@@ -104,7 +104,6 @@
 				0AF8A3A92457597E009C0AC7 /* Discipline+CoreDataClass.swift */,
 				0AF8A3A72457597E009C0AC7 /* Discipline+CoreDataProperties.swift */,
 				0A73771F24569ADC007E9EE3 /* Discipline+Extensions.swift */,
-				0A023D3A244C6A9400D167BF /* UIKit+Extensions.swift */,
 				0A81A1F424538DFF00B57AD7 /* Foundation+Extensions.swift */,
 				0A023D43244C7A3400D167BF /* DataManager.swift */,
 				0A11A139244D0E1800C298D0 /* Disciplines.xcdatamodeld */,
@@ -125,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				0AAF7B0F1F68897F00407AC5 /* LaunchScreen.storyboard */,
+				0A023D3A244C6A9400D167BF /* UIKit+Extensions.swift */,
 				0AAAB14C2451D49F00C53601 /* Main */,
 				0AC66FDE2453DF500083D26B /* Graph */,
 				0AC66FDF2453DF7A0083D26B /* ArchiveController.swift */,

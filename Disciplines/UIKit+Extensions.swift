@@ -22,3 +22,13 @@ extension UIColor {
     self.init(red: red, green: green, blue: blue, alpha: 1)
   }
 }
+
+extension UIView {
+  func setBackground() {
+    if #available(iOS 13, *) {
+      backgroundColor = .systemBackground
+    } else {
+      backgroundColor = .gray
+    }
+  }
+}

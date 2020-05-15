@@ -60,7 +60,7 @@ class ViewController: UIViewController {
   }
   
   private func setupBackground() {
-    view.backgroundColor = .white
+    view.setBackground()
   }
   
   private func setupNavigationBar() {
