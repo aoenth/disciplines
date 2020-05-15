@@ -46,10 +46,11 @@ class ArchiveCell: UITableViewCell {
   
   private func applyStyles() {
     backgroundColor = UIColor(hex: 0x6DD400)
-    layer.cornerRadius = 8
   }
   
-  
+  override func layoutSubviews() {
+    layer.cornerRadius = 8
+  }
   
   func configure(name: String, date: String, count: String) {
     let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), .foregroundColor: UIColor.white]
