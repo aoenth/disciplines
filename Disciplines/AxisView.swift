@@ -24,26 +24,22 @@ class AxisView: UIView {
     let endX = rect.width
     let endY = originY
     
-    let path = UIBezierPath()
-    drawLine(path: path, originX: originX, endX: endX, endY: endY, percentage: 0)
-    drawLine(path: path, originX: originX, endX: endX, endY: endY, percentage: 0.25)
-    drawLine(path: path, originX: originX, endX: endX, endY: endY, percentage: 0.50)
-    drawLine(path: path, originX: originX, endX: endX, endY: endY, percentage: 0.75)
-    drawLine(path: path, originX: originX, endX: endX, endY: endY, percentage: 1)
-    
     lineColor.setStroke()
+    let path = UIBezierPath()
+    path.lineWidth = 1
+    drawLine(path: path, originX: originX, endX: endX, endY: endY, percentage: 0)
+    drawLine(path: path, originX: originX, endX: endX, endY: endY, percentage: 1)
     path.stroke()
+    let subdividers = UIBezierPath()
+    subdividers.lineWidth = 0.5
+    drawLine(path: subdividers, originX: originX, endX: endX, endY: endY, percentage: 0.25)
+    drawLine(path: subdividers, originX: originX, endX: endX, endY: endY, percentage: 0.50)
+    drawLine(path: subdividers, originX: originX, endX: endX, endY: endY, percentage: 0.75)
+    subdividers.stroke()
   }
 
   func drawLine(path: UIBezierPath, originX: CGFloat, endX: CGFloat, endY: CGFloat, percentage: CGFloat) {
-    var lineHeight = endY * (1 - percentage)
-    
-    if lineHeight == 0 {
-      lineHeight += 1
-    } else if lineHeight == endY {
-      lineHeight -= 1
-    }
-    
+    let lineHeight = endY * (1 - percentage)
     assert(lineHeight >= 0 && lineHeight <= endY, "percentage must be 0 <= percentage <= 1")
     let lineStart = CGPoint(x: originX, y: lineHeight)
     let lineEnd = CGPoint(x: endX, y: lineHeight)
