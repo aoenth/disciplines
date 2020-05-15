@@ -57,6 +57,7 @@ class DisciplineButton: UIButton {
       .font: UIFont.systemFont(ofSize: 12),
       .foregroundColor: color
     ]
+    label.textAlignment = .center
     label.attributedText = NSAttributedString(string: discipline.shortText, attributes: attributes)
   }
 }

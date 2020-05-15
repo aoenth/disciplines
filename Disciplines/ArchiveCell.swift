@@ -12,6 +12,7 @@ class ArchiveCell: UITableViewCell {
   private lazy var nameLabel: AKLabel = {
     let lbl = AKLabel()
     lbl.translatesAutoresizingMaskIntoConstraints = false
+    lbl.textAlignment = .center
     return lbl
   }()
   
