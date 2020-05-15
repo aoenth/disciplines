@@ -37,6 +37,6 @@ extension Date {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MMM d, yyyy"
     let dateString = dateFormatter.string(from: self)
-    return dayOfWeek + ", " + dateString
+    return dateString
   }
 }

@@ -46,9 +46,9 @@ class ArchiveController: UIViewController {
   private func layoutViews() {
     view.addSubview(tableView)
     let salg = view.safeAreaLayoutGuide
-    tableView.leadingAnchor.constraint(equalToSystemSpacingAfter: salg.leadingAnchor, multiplier: 1).activate()
+    tableView.leadingAnchor.constraint(equalToSystemSpacingAfter: salg.leadingAnchor, multiplier: 2).activate()
     tableView.topAnchor.constraint(equalToSystemSpacingBelow: salg.topAnchor, multiplier: 0).activate()
-    salg.trailingAnchor.constraint(equalToSystemSpacingAfter: tableView.trailingAnchor, multiplier: 1).activate()
+    salg.trailingAnchor.constraint(equalToSystemSpacingAfter: tableView.trailingAnchor, multiplier: 2).activate()
     salg.bottomAnchor.constraint(equalToSystemSpacingBelow: tableView.bottomAnchor, multiplier: 1).activate()
   }
   
