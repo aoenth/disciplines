@@ -47,13 +47,16 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     setupBackground()
     setupNavigationBar()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    stackView.arrangedSubviews.forEach { (view) in
+      stackView.removeArrangedSubview(view)
+      view.removeFromSuperview()
+    }
     populateExistingData()
     createButtons()
     layoutViews()
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    btnTapped()
   }
   
   private func setupBackground() {
