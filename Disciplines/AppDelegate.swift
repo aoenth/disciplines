@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let tabBarController = UITabBarController()
     tabBarController.viewControllers = [archiveController, navigationController, graphController]
+    tabBarController.selectedIndex = 1
     window?.rootViewController = tabBarController
     window?.makeKeyAndVisible()
     return true
