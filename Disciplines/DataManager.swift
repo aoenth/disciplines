@@ -187,6 +187,10 @@ class DataManager {
     return loadDisciplines(showArchived: true)
   }
   
+  func getAchievementWorthyDisciplines() -> [Discipline] {
+    return getAllDisciplines().filter { $0.hasEverCompleted }
+  }
+  
   func getAllCompletions() -> [Completion] {
     return loadAllCompletions()
   }

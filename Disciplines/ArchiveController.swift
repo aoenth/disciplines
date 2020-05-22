@@ -32,7 +32,7 @@ class ArchiveController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    disciplines = DataManager.shared.getAllDisciplines().sorted()
+    disciplines = DataManager.shared.getAchievementWorthyDisciplines().sorted()
 
     calculateRankings()
     

@@ -24,4 +24,8 @@ extension Discipline: Comparable {
       }
     }
   }
+  
+  var hasEverCompleted: Bool {
+    return completions.count > 0
+  }
 }
