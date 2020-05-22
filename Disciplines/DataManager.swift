@@ -33,9 +33,9 @@ class DataManager {
   
   let initial = ["Sleep at 9:30PM",
                  "Wake up at 4:30AM",
-                 "Learn from any online resource whenever bored",
-                 "Max 1 Overwatch game a day",
-                 "Max 1 hour of music listening a day"]
+                 "Read for 1 hour",
+                 "Write into Dear Diary",
+                 "2 minutes of planking"]
   
   private init() {
     container = NSPersistentContainer(name: "Disciplines")
@@ -47,9 +47,20 @@ class DataManager {
       }
     }
     
+    #if DEBUG
     removeSavedDisciplines()
     removeSavedCompletions()
     insertDummyData()
+    #else
+    let defaults = UserDefaults.standard
+    let isFirstRun = defaults.bool(forKey: "FirstRun")
+    if isFirstRun == false {
+        removeSavedDisciplines()
+        removeSavedCompletions()
+        insertDummyData()
+        defaults.set(true, forKey: "FirstRun")
+    }
+    #endif
   }
   
   func loadAllCompletions() -> [Completion] {
