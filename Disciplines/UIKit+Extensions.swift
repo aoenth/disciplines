@@ -32,3 +32,41 @@ extension UIView {
     }
   }
 }
+
+extension UIColor {
+  static func colorForRank(at rank: Int, outOf total: Int) -> UIColor {
+    if total <= 1 {
+      return .systemGreen
+    }
+    
+    let percentage = Double(rank - 1) / Double(total - 1)
+    switch percentage {
+    case 0...0.5:
+      return firstHalf(percentage: percentage * 2)
+    case 0.5...1:
+      return secondHalf(percentage: (percentage - 0.5) * 2)
+    default:
+      fatalError("Bad Input: rank must satisfy 0 <= rank <= 1")
+    }
+  }
+  
+  static fileprivate func firstHalf(percentage: Double) -> UIColor {
+    let begin = UIColor.systemGreen.cgColor.components!
+    let end = UIColor.systemYellow.cgColor.components!
+    return createColor(begin: begin, end: end, percentage: percentage)
+  }
+  
+  static fileprivate func secondHalf(percentage: Double) -> UIColor {
+    let begin = UIColor.systemYellow.cgColor.components!
+    let end = UIColor.systemOrange.cgColor.components!
+    return createColor(begin: begin, end: end, percentage: percentage)
+  }
+  
+  static fileprivate func createColor(begin: [CGFloat], end: [CGFloat], percentage: Double) -> UIColor {
+    var colorDiff = begin
+    for i in 0 ..< 3 {
+      colorDiff[i] = begin[i] + (end[i] - begin[i]) * CGFloat(percentage)
+    }
+    return UIColor(red: colorDiff[0], green: colorDiff[1], blue: colorDiff[2], alpha: 1)
+  }
+}

@@ -11,6 +11,7 @@ import UIKit
 class ArchiveController: UIViewController {
   let cellId = "cellId"
   var disciplines = [Discipline]()
+  var disciplineRankings = [Discipline: Int]()
   
   private lazy var tableView: UITableView = {
     let tv = UITableView()
@@ -29,10 +30,28 @@ class ArchiveController: UIViewController {
     setupNavigationBar()
     layoutViews()
   }
-
-  override func viewDidAppear(_ animated: Bool) {
+  
+  override func viewWillAppear(_ animated: Bool) {
     disciplines = DataManager.shared.getAllDisciplines().sorted()
+
+    calculateRankings()
+    
     tableView.reloadData()
+  }
+  
+  fileprivate func calculateRankings() {
+    var ranking = 1
+    for (i, d) in disciplines.enumerated() {
+      disciplineRankings[d] = ranking
+      if i + 1 < disciplines.count {
+        let nextDiscipline = disciplines[i + 1]
+        let nextCount = nextDiscipline.completions.count
+        let thisCount = d.completions.count
+        if nextCount > thisCount {
+          ranking += 1
+        }
+      }
+    }
   }
   
   private func setupBackground() {
@@ -63,8 +82,14 @@ extension ArchiveController: UITableViewDataSource {
     let discipline = disciplines[indexPath.section]
     let name = discipline.shortText
     let date = discipline.dateIntroduced.archiveDateFormat
-    let count = "\(discipline.completions.count)"
-    cell.configure(name: name, date: date, count: count)
+    let count = discipline.completions.count
+    cell.configure(name: name, date: date, count: String(count))
+    if count == 0 {
+      cell.backgroundColor = .systemOrange
+    } else {
+      let rank = disciplineRankings[discipline, default: 1]
+      cell.backgroundColor = UIColor.colorForRank(at: rank, outOf: disciplineRankings.count)
+    }
     return cell
   }
   
