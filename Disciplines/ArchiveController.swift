@@ -13,7 +13,12 @@ class ArchiveController: UIViewController {
   var disciplines = [Discipline]()
   var disciplineRankings = [Discipline: Int]()
   
-  private lazy var tableView: UITableView = {
+  private var _tableView: UITableView?
+  private var tableView: UITableView {
+    if let tableView = _tableView {
+      return tableView
+    }
+    
     let tv = UITableView()
     tv.register(ArchiveCell.self, forCellReuseIdentifier: cellId)
     tv.translatesAutoresizingMaskIntoConstraints = false
@@ -22,12 +27,20 @@ class ArchiveController: UIViewController {
     tv.separatorStyle = .none
     tv.dataSource = self
     tv.delegate = self
+    _tableView = tv
     return tv
+  }
+  
+  private lazy var backdrop: UILabel = {
+    let label = UILabel()
+    label.textAlignment = .center
+    label.textColor = .systemGray
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
   }()
   
   override func viewDidLoad() {
     setupBackground()
-    setupNavigationBar()
     layoutViews()
   }
   
@@ -36,7 +49,8 @@ class ArchiveController: UIViewController {
 
     calculateRankings()
     
-    tableView.reloadData()
+    refreshViews()
+    
   }
   
   fileprivate func calculateRankings() {
@@ -54,21 +68,58 @@ class ArchiveController: UIViewController {
     }
   }
   
+  fileprivate func refreshViews() {
+    if disciplines.count > 0 {
+      removeBackdrop()
+      if _tableView == nil {
+        layoutTableView()
+      } else {
+        tableView.isHidden = false
+        tableView.reloadData()
+      }
+    } else {
+      if _tableView != nil {
+        tableView.isHidden = true
+      }
+      if view.subviews.contains(backdrop) == false {
+        displayBackdrop("Nothing to Show")
+      }
+    }
+  }
+  
   private func setupBackground() {
     view.setBackground()
   }
   
-  private func setupNavigationBar() {
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Show Main", style: .plain, target: self, action: #selector(showMainController))
+  private func layoutViews() {
+    if disciplines.count > 0 {
+      layoutTableView()
+    }
   }
   
-  private func layoutViews() {
+  fileprivate func layoutTableView() {
     view.addSubview(tableView)
     let salg = view.safeAreaLayoutGuide
     tableView.leadingAnchor.constraint(equalToSystemSpacingAfter: salg.leadingAnchor, multiplier: 2).activate()
     tableView.topAnchor.constraint(equalToSystemSpacingBelow: salg.topAnchor, multiplier: 0).activate()
     salg.trailingAnchor.constraint(equalToSystemSpacingAfter: tableView.trailingAnchor, multiplier: 2).activate()
     salg.bottomAnchor.constraint(equalToSystemSpacingBelow: tableView.bottomAnchor, multiplier: 1).activate()
+  }
+  
+  fileprivate func removeBackdrop() {
+    if view.subviews.contains(backdrop) {
+      backdrop.removeFromSuperview()
+    }
+  }
+  
+  fileprivate func displayBackdrop(_ message: String) {
+    backdrop.text = message
+    view.addSubview(backdrop)
+    let salg = view.safeAreaLayoutGuide
+    backdrop.leadingAnchor.constraint(equalToSystemSpacingAfter: salg.leadingAnchor, multiplier: 2).activate()
+    backdrop.topAnchor.constraint(equalToSystemSpacingBelow: salg.topAnchor, multiplier: 0).activate()
+    salg.trailingAnchor.constraint(equalToSystemSpacingAfter: backdrop.trailingAnchor, multiplier: 2).activate()
+    salg.bottomAnchor.constraint(equalToSystemSpacingBelow: backdrop.bottomAnchor, multiplier: 1).activate()
   }
   
   @objc private func showMainController() {
@@ -126,6 +177,7 @@ extension ArchiveController: UITableViewDelegate {
       DataManager.shared.saveContext()
       let indexSet = IndexSet([indexPath.section])
       tableView.deleteSections(indexSet, with: .automatic)
+      refreshViews()
     }
   }
 }
