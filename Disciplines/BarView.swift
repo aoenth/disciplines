@@ -11,24 +11,48 @@ import UIKit
 class BarView: UIView {
   private var percent: Double = 0
   
+  private lazy var bar: UIView = {
+    let v = UIView()
+    v.translatesAutoresizingMaskIntoConstraints = false
+    v.backgroundColor = UIColor(hex: 0x6DD400)
+    return v
+  }()
+  
+  private lazy var label: UILabel = {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    let percentText = String(format: "%0.0f", percent * 100)
+    label.text = percentText + " %"
+    label.textAlignment = .center
+    label.font = .systemFont(ofSize: 10)
+    return label
+  }()
+  
   convenience init(percent: Double) {
     self.init()
-    applyStyles()
     self.percent = percent
+    applyStyles()
+    layoutCompletionBar()
   }
   
-  override func draw(_ rect: CGRect) {
-    let upperLeftX: CGFloat = 0
-    let upperLeftY = rect.height * CGFloat(1 - percent)
-    let lowerRightX = rect.width
-    let lowerRightY = rect.height
-    let width = lowerRightX - upperLeftX
-    let height = lowerRightY - upperLeftY
-    let rect = CGRect(x: upperLeftX, y: upperLeftY, width: width, height: height)
+  private func layoutCompletionBar() {
+    addSubview(bar)
+    bar.leftAnchor.constraint(equalToSystemSpacingAfter: leftAnchor, multiplier: 0).activate()
+    rightAnchor.constraint(equalToSystemSpacingAfter: bar.rightAnchor, multiplier: 0).activate()
+    bottomAnchor.constraint(equalToSystemSpacingBelow: bar.bottomAnchor, multiplier: 0).activate()
+
+    let multiplier = CGFloat(percent)
+    bar.heightAnchor.constraint(equalTo: heightAnchor, multiplier: multiplier).activate()
     
-    let path = UIBezierPath(rect: rect)
-    UIColor(hex: 0x6DD400).setFill()
-    path.fill()
+    
+    guard percent > 0 else {
+      return
+    }
+    
+    addSubview(label)
+    label.leadingAnchor.constraint(equalToSystemSpacingAfter: bar.leadingAnchor, multiplier: 0).activate()
+    bar.trailingAnchor.constraint(equalToSystemSpacingAfter: label.trailingAnchor, multiplier: 0).activate()
+    label.topAnchor.constraint(equalToSystemSpacingBelow: bar.topAnchor, multiplier: 1).activate()
   }
   
   private func applyStyles() {
