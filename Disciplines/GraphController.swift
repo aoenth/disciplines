@@ -181,6 +181,10 @@ class GraphController: UIViewController {
     for dayOfWeekLabel in xAxisLabels {
       xAxisStackView.addArrangedSubview(dayOfWeekLabel)
     }
+    if let lastView = xAxisStackView.arrangedSubviews.last as? UILabel {
+      lastView.font = .boldSystemFont(ofSize: 12)
+      lastView.addBackground(#imageLiteral(resourceName: "Date Pointing Box"))
+    }
     
     let fullCompletionLabel = yAxisLabels[1]
     view.addSubview(fullCompletionLabel)

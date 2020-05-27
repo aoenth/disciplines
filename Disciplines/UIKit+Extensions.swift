@@ -33,6 +33,22 @@ extension UIView {
   }
 }
 
+extension UILabel {
+  func addBackground(_ image: UIImage) {
+    if let superview = superview {
+      let iv = UIImageView(image: image)
+      iv.translatesAutoresizingMaskIntoConstraints = false
+      iv.contentMode = .scaleAspectFit
+      superview.addSubview(iv)
+      iv.leadingAnchor.constraint(equalTo: leadingAnchor).activate()
+      iv.trailingAnchor.constraint(equalTo: trailingAnchor).activate()
+      iv.topAnchor.constraint(equalTo: topAnchor).activate()
+      iv.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
+      superview.sendSubviewToBack(iv)
+    }
+  }
+}
+
 extension UIColor {
   static func colorForRank(at rank: Int, outOf total: Int) -> UIColor {
     if total <= 1 {
