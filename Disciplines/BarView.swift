@@ -14,7 +14,6 @@ class BarView: UIView {
   private lazy var bar: UIView = {
     let v = UIView()
     v.translatesAutoresizingMaskIntoConstraints = false
-    v.backgroundColor = UIColor(hex: 0x6DD400)
     return v
   }()
   
@@ -22,7 +21,7 @@ class BarView: UIView {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     let percentText = String(format: "%0.0f", percent * 100)
-    label.text = percentText + " %"
+    label.text = percentText
     label.textAlignment = .center
     label.font = .systemFont(ofSize: 10)
     return label
@@ -41,6 +40,7 @@ class BarView: UIView {
     rightAnchor.constraint(equalToSystemSpacingAfter: bar.rightAnchor, multiplier: 0).activate()
     bottomAnchor.constraint(equalToSystemSpacingBelow: bar.bottomAnchor, multiplier: 0).activate()
 
+    bar.backgroundColor = UIColor.colorForPercent(percent)
     let multiplier = CGFloat(percent)
     bar.heightAnchor.constraint(equalTo: heightAnchor, multiplier: multiplier).activate()
     

@@ -56,33 +56,25 @@ extension UIColor {
     }
     
     let percentage = Double(rank - 1) / Double(total - 1)
+    return colorForPercent(1 - percentage)
+  }
+  
+  /**
+   0% is system green
+   100% is system orange
+   */
+  static func colorForPercent(_ percentage: Double) -> UIColor {
     switch percentage {
-    case 0...0.5:
-      return firstHalf(percentage: percentage * 2)
-    case 0.5...1:
-      return secondHalf(percentage: (percentage - 0.5) * 2)
+    case 0..<0.33:
+      return UIColor(hex: 0xE02020)
+    case 0.33..<0.66:
+      return UIColor(hex: 0xFA6400)
+    case 0.66..<1:
+      return UIColor(hex: 0xF7B500)
+    case 1:
+      return UIColor(hex: 0x6DD400)
     default:
       fatalError("Bad Input: rank must satisfy 0 <= rank <= 1")
     }
-  }
-  
-  static fileprivate func firstHalf(percentage: Double) -> UIColor {
-    let begin = UIColor.systemGreen.cgColor.components!
-    let end = UIColor.systemYellow.cgColor.components!
-    return createColor(begin: begin, end: end, percentage: percentage)
-  }
-  
-  static fileprivate func secondHalf(percentage: Double) -> UIColor {
-    let begin = UIColor.systemYellow.cgColor.components!
-    let end = UIColor.systemOrange.cgColor.components!
-    return createColor(begin: begin, end: end, percentage: percentage)
-  }
-  
-  static fileprivate func createColor(begin: [CGFloat], end: [CGFloat], percentage: Double) -> UIColor {
-    var colorDiff = begin
-    for i in 0 ..< 3 {
-      colorDiff[i] = begin[i] + (end[i] - begin[i]) * CGFloat(percentage)
-    }
-    return UIColor(red: colorDiff[0], green: colorDiff[1], blue: colorDiff[2], alpha: 1)
   }
 }
