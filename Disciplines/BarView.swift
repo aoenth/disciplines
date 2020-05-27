@@ -52,7 +52,14 @@ class BarView: UIView {
     addSubview(label)
     label.leadingAnchor.constraint(equalToSystemSpacingAfter: bar.leadingAnchor, multiplier: 0).activate()
     bar.trailingAnchor.constraint(equalToSystemSpacingAfter: label.trailingAnchor, multiplier: 0).activate()
-    label.topAnchor.constraint(equalToSystemSpacingBelow: bar.topAnchor, multiplier: 1).activate()
+    
+    
+    if percent >= 0.5 {
+      label.topAnchor.constraint(equalToSystemSpacingBelow: bar.topAnchor, multiplier: 1).activate()
+    } else {
+      bar.topAnchor.constraint(equalToSystemSpacingBelow: label.bottomAnchor, multiplier: 1).activate()
+    }
+    
   }
   
   private func applyStyles() {
