@@ -184,11 +184,11 @@ class GraphController: UIViewController {
     if let lastView = xAxisStackView.arrangedSubviews.last as? UILabel {
       lastView.font = .boldSystemFont(ofSize: 12)
       
+      lastView.textColor = .white
       if #available(iOS 13, *) {
-        lastView.textColor = .white
         lastView.addBackground(#imageLiteral(resourceName: "Date Pointing Box"), tint: .link)
       } else {
-        lastView.addBackground(#imageLiteral(resourceName: "Date Pointing Box"))
+        lastView.addBackground(#imageLiteral(resourceName: "Date Pointing Box"), tint: .systemBlue)
       }
       
     }

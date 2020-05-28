@@ -9,8 +9,8 @@
 import UIKit
 
 class DisciplineButton: UIButton {
-  private let cellBackgroundColor = UIColor(hex: 0xD8D8D8)
-  private let cellBorderColor = UIColor(hex: 0x979797)
+  private let cellBackgroundColor = UIColor(hex: 0xFFFFFF)
+  private let cellBorderColor = UIColor.clear
   private let cellBorderCompleteColor = UIColor(hex: 0xBBBBBB)
   private let cellFontColor = UIColor(hex: 0x959595)
   private let label = AKLabel()
