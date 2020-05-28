@@ -28,15 +28,25 @@ extension UIView {
     if #available(iOS 13, *) {
       backgroundColor = .systemBackground
     } else {
-      backgroundColor = .gray
+      backgroundColor = .white
     }
   }
 }
 
 extension UILabel {
-  func addBackground(_ image: UIImage) {
+  func addBackground(_ image: UIImage, tint: UIColor? = nil) {
     if let superview = superview {
-      let iv = UIImageView(image: image)
+      let imageToInclude: UIImage
+      let iv = UIImageView()
+      
+      if let tint = tint {
+        imageToInclude = image.withRenderingMode(.alwaysTemplate)
+        iv.tintColor = tint
+      } else {
+        imageToInclude = image
+      }
+      
+      iv.image = imageToInclude
       iv.translatesAutoresizingMaskIntoConstraints = false
       iv.contentMode = .scaleAspectFit
       superview.addSubview(iv)
@@ -60,8 +70,10 @@ extension UIColor {
   }
   
   /**
-   0% is system green
-   100% is system orange
+    * Red: `0..<0.33`
+    * Orange: `0.33..<0.66`
+    * Yellow: `0.66..<1`
+    * Green: `1`
    */
   static func colorForPercent(_ percentage: Double) -> UIColor {
     switch percentage {
@@ -74,7 +86,7 @@ extension UIColor {
     case 1:
       return UIColor(hex: 0x6DD400)
     default:
-      fatalError("Bad Input: rank must satisfy 0 <= rank <= 1")
+      fatalError("Bad Input: percentage must satisfy 0 <= percentage <= 1")
     }
   }
 }
