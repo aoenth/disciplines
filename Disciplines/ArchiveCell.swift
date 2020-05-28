@@ -11,6 +11,7 @@ class ArchiveCell: UITableViewCell {
   
   private lazy var nameLabel: AKLabel = {
     let lbl = AKLabel()
+    lbl.maxSizeFontOverride = 36
     lbl.translatesAutoresizingMaskIntoConstraints = false
     lbl.textAlignment = .center
     return lbl

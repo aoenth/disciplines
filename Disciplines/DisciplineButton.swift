@@ -9,10 +9,10 @@
 import UIKit
 
 class DisciplineButton: UIButton {
-  private let cellBackgroundColor = UIColor(red: 0xD8/0xFF, green: 0xD8/0xFF, blue: 0xD8/0xFF, alpha: 1)
-  private let cellBorderColor = UIColor(red: 0x97/0xFF, green: 0x97/0xFF, blue: 0x97/0xFF, alpha: 1)
-  private let cellBorderCompleteColor = UIColor(red: 0xBB/0xFF, green: 0xBB/0xFF, blue: 0xBB/0xFF, alpha: 1)
-  private let cellFontColor = UIColor(red: 0x95/0xFF, green: 0x95/0xFF, blue: 0x95/0xFF, alpha: 1)
+  private let cellBackgroundColor = UIColor(hex: 0xD8D8D8)
+  private let cellBorderColor = UIColor(hex: 0x979797)
+  private let cellBorderCompleteColor = UIColor(hex: 0xBBBBBB)
+  private let cellFontColor = UIColor(hex: 0x959595)
   private let label = AKLabel()
   
   var discipline: Discipline!
@@ -57,6 +57,7 @@ class DisciplineButton: UIButton {
       .font: UIFont.systemFont(ofSize: 12),
       .foregroundColor: color
     ]
+    label.maxSizeFontOverride = 36
     label.textAlignment = .center
     label.attributedText = NSAttributedString(string: discipline.shortText, attributes: attributes)
   }

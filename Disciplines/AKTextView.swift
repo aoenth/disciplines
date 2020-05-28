@@ -140,6 +140,8 @@ open class AKLabel: UILabel {
   @objc
   public var verticalAlignment: VerticalAlignment = .center
   
+  public var maxSizeFontOverride: CGFloat?
+  
   open override var attributedText: NSAttributedString! {
     set {
       precondition(newValue.hasFontFullySpecified, "You must specify a font for all parts of the string.")
@@ -163,10 +165,29 @@ open class AKLabel: UILabel {
   open override func layoutSubviews() {
     super.layoutSubviews()
     guard attributedText != nil, attributedText.length > 0 else { return }
+    
+    
+    let maxFontSize = determineMaxFontSize(attributedText: attributedText)
+    
+    super.attributedText = attributedText.withFontSize(maxFontSize)
+  }
+  
+  private func determineMaxFontSize(attributedText: NSAttributedString) -> CGFloat {
+    
     let longestWord = attributedText.longestWord
-    super.attributedText = attributedText.withFontSize(AKTextUtilities.maxFontSize(string: attributedText, longestWord: longestWord, fitSize: bounds.size) { string, maxWidth in
-      return AKTextUtilities.sizingFunction2(string: string, maxWidth: maxWidth)
-    })
+    
+    let maxFontSize = AKTextUtilities.maxFontSize(
+      string: attributedText,
+      longestWord: longestWord,
+      fitSize: bounds.size) { string, maxWidth in
+        return AKTextUtilities.sizingFunction2(string: string, maxWidth: maxWidth)
+    }
+    
+    if let max = maxSizeFontOverride {
+      return min(max, maxFontSize)
+    } else {
+      return maxFontSize
+    }
   }
   
   open override func draw(_ rect: CGRect) {
