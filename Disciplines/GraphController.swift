@@ -161,7 +161,7 @@ class GraphController: UIViewController {
     salg.rightAnchor.constraint(equalToSystemSpacingAfter: axis.rightAnchor, multiplier: 6).activate()
     axis.heightAnchor.constraint(equalToConstant: 160).activate()
     
-    view.insertSubview(bars, belowSubview: axis)
+    view.addSubview(bars)
     bars.topAnchor.constraint(equalTo: axis.topAnchor).activate()
     bars.leftAnchor.constraint(equalToSystemSpacingAfter: axis.leftAnchor, multiplier: 1).activate()
     axis.rightAnchor.constraint(equalToSystemSpacingAfter: bars.rightAnchor, multiplier: 1).activate()
