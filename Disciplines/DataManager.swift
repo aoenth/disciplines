@@ -51,6 +51,7 @@ class DataManager {
     removeSavedDisciplines()
     removeSavedCompletions()
     insertDummyData()
+    insertDummyCompletionData()
     #else
     let defaults = UserDefaults.standard
     let isFirstRun = defaults.bool(forKey: "FirstRun")
@@ -127,9 +128,29 @@ class DataManager {
   }
   
   func insertDummyData() {
-    initial.forEach { (text) in
-      _ = create(text)
+    let creationDate = [6, 5, 3, 0, 2, 1, 1]
+    initial.enumerated().forEach { (index, text) in
+      _ = create(text, customCreationDate: Date.nDaysBefore(creationDate[index]))
     }
+  }
+  
+  private func insertDummyCompletionData() {
+    let disciplines = getAllDisciplines()
+    complete(discipline: disciplines[0], customCompletion: Date.nDaysBefore(6))
+    complete(discipline: disciplines[1], customCompletion: Date.nDaysBefore(5))
+    complete(discipline: disciplines[2], customCompletion: Date.nDaysBefore(4))
+    complete(discipline: disciplines[1], customCompletion: Date.nDaysBefore(3))
+    complete(discipline: disciplines[2], customCompletion: Date.nDaysBefore(3))
+    complete(discipline: disciplines[3], customCompletion: Date.nDaysBefore(3))
+    complete(discipline: disciplines[0], customCompletion: Date.nDaysBefore(2))
+    complete(discipline: disciplines[1], customCompletion: Date.nDaysBefore(2))
+    complete(discipline: disciplines[2], customCompletion: Date.nDaysBefore(2))
+    complete(discipline: disciplines[0], customCompletion: Date.nDaysBefore(1))
+    complete(discipline: disciplines[1], customCompletion: Date.nDaysBefore(1))
+    complete(discipline: disciplines[2], customCompletion: Date.nDaysBefore(1))
+    complete(discipline: disciplines[0], customCompletion: Date.nDaysBefore(0))
+    complete(discipline: disciplines[1], customCompletion: Date.nDaysBefore(0))
+    complete(discipline: disciplines[2], customCompletion: Date.nDaysBefore(0))
   }
   
   func create(_ disciplineText: String, customCreationDate: Date = Date()) -> Discipline {
