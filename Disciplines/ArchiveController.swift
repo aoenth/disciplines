@@ -61,7 +61,7 @@ class ArchiveController: UIViewController {
         let nextDiscipline = disciplines[i + 1]
         let nextCount = nextDiscipline.completions.count
         let thisCount = d.completions.count
-        if nextCount > thisCount {
+        if nextCount < thisCount {
           ranking += 1
         }
       }
