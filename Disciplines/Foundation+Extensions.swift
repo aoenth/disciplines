@@ -15,11 +15,14 @@ extension Date {
   static func lastNDays(_ n: Int) -> [Date] {
     var dates = [Date]()
     for i in 0 ..< n {
-      let date = Date() - TimeInterval(i * 86400)
-      let startOfDay = Calendar.current.startOfDay(for: date)
-      dates.append(startOfDay)
+      dates.append(Date.nDaysBefore(i))
     }
     return dates
+  }
+  
+  static func nDaysBefore(_ n: Int) -> Date {
+    let date = Date() - TimeInterval(n * 86400)
+    return Calendar.current.startOfDay(for: date)
   }
   
   var dayOfWeek: String {
